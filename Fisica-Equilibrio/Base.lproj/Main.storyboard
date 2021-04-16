@@ -3,10 +3,19 @@
     <device id="retina4_7" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Questrial-Regular.ttf">
+            <string>Questrial-Regular</string>
+        </array>
+        <array key="Righteous-Regular.ttf">
+            <string>Righteous-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -16,24 +25,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing GitHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV3-GG-QeH">
-                                <rect key="frame" x="276" y="177" width="114" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="41z-8V-7YN">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="TmY-o0-DEq">
+                                <rect key="frame" x="60" y="110" width="547" height="215"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-hY-4UC">
+                                        <rect key="frame" x="0.0" y="0.0" width="253.5" height="215"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7Z-ay-ktr">
+                                                <rect key="frame" x="0.0" y="0.0" width="253.5" height="182"/>
+                                                <state key="normal" image="temp-menu-simulator"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simulador" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJW-iV-f5h">
+                                                <rect key="frame" x="72" y="190" width="109.5" height="25"/>
+                                                <fontDescription key="fontDescription" name="Questrial-Regular" family="Questrial" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="knJ-t8-Zzn">
+                                        <rect key="frame" x="293.5" y="0.0" width="253.5" height="215"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1K-R5-MuS">
+                                                <rect key="frame" x="0.0" y="0.0" width="253.5" height="182"/>
+                                                <state key="normal" image="temp-menu-quizzes"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exámenes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiX-fy-dJC">
+                                                <rect key="frame" x="70.5" y="190" width="113" height="25"/>
+                                                <fontDescription key="fontDescription" name="Questrial-Regular" family="Questrial" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equilibrio Rotacional" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXQ-wG-aop">
+                                <rect key="frame" x="180.5" y="20" width="306" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yXQ-wG-aop" secondAttribute="height" multiplier="153:20" id="zWY-7k-kbL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvh-oH-Khx">
+                                <rect key="frame" x="601" y="10" width="56" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Wgq-kw-9of"/>
+                                    <constraint firstAttribute="height" constant="44" id="fv5-JR-arh"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="speaker.wave.3.fill" catalog="system" renderingMode="original"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TmY-o0-DEq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="1PP-pK-3pz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="41z-8V-7YN" secondAttribute="trailing" id="2mA-dy-HA8"/>
+                            <constraint firstItem="yXQ-wG-aop" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GfX-5x-onT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="41z-8V-7YN" secondAttribute="bottom" id="JZT-uy-V7r"/>
+                            <constraint firstItem="yXQ-wG-aop" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="PXd-Ys-fGA"/>
+                            <constraint firstItem="41z-8V-7YN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UQa-a6-fdn"/>
+                            <constraint firstItem="TmY-o0-DEq" firstAttribute="top" secondItem="yXQ-wG-aop" secondAttribute="bottom" constant="50" id="YAg-gm-XiM"/>
+                            <constraint firstItem="Hvh-oH-Khx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="qcI-Kv-Vfe"/>
+                            <constraint firstAttribute="bottom" secondItem="TmY-o0-DEq" secondAttribute="bottom" constant="50" id="sif-oK-1wK"/>
+                            <constraint firstItem="41z-8V-7YN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xtX-xj-0xC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hvh-oH-Khx" secondAttribute="trailing" constant="10" id="zDn-TY-O38"/>
+                            <constraint firstAttribute="trailing" secondItem="TmY-o0-DEq" secondAttribute="trailing" constant="60" id="zbD-sH-jIq"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgBackground" destination="41z-8V-7YN" id="pQH-AM-vy7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="106"/>
+            <point key="canvasLocation" x="139.880059970015" y="104.8"/>
         </scene>
     </scenes>
     <resources>
+        <image name="speaker.wave.3.fill" catalog="system" width="128" height="86"/>
+        <image name="temp-menu-quizzes" width="992" height="607"/>
+        <image name="temp-menu-simulator" width="1003" height="617"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

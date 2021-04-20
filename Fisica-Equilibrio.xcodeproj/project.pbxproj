@@ -160,6 +160,7 @@
 				534D00EC262892B700AAB40A /* ViewController.swift in Sources */,
 				534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */,
 				534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */,
+				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
 				6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */,
 				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
 			);

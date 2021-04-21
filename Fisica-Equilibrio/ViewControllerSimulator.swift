@@ -11,7 +11,7 @@ class ViewControllerSimulator: UIViewController {
 
     @IBOutlet weak var imgBackground: UIImageView!
     @IBOutlet weak var btnStart: UIButton!
-    @IBOutlet weak var btnObjects: UIButton!
+    @IBOutlet weak var btnItems: UIButton!
     @IBOutlet weak var lbTorque: UILabel!
     @IBOutlet weak var vTools: UIView!
     @IBOutlet weak var imgLock: UIImageView!
@@ -33,13 +33,21 @@ class ViewControllerSimulator: UIViewController {
         btnStart.layer.cornerRadius = 9
         btnStart.layer.borderWidth = 3
         btnStart.layer.borderColor = UIColor.black.cgColor
-        btnObjects.layer.cornerRadius = 9
-        btnObjects.layer.borderWidth = 3
-        btnObjects.layer.borderColor = UIColor.black.cgColor
+        btnItems.layer.cornerRadius = 9
+        btnItems.layer.borderWidth = 3
+        btnItems.layer.borderColor = UIColor.black.cgColor
         lbTorque.layer.cornerRadius = 9
         lbTorque.layer.masksToBounds = true
         vTools.layer.cornerRadius = 9
     
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+    
+    @IBAction func closeItems(segue: UIStoryboardSegue) {
+        
     }
 
     @IBAction func StartSimulation(_ sender: Any) {

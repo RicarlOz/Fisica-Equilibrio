@@ -10,6 +10,8 @@
 		5304F851262F46DC00690EB4 /* Questrial-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */; };
 		5304F852262F46DC00690EB4 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */; };
 		5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F854262F475800690EB4 /* ViewControllerSimulator.swift */; };
+		5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F857262F893E00690EB4 /* ViewControllerItems.swift */; };
+		5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */; };
 		534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00E7262892B700AAB40A /* AppDelegate.swift */; };
 		534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00E9262892B700AAB40A /* SceneDelegate.swift */; };
 		534D00EC262892B700AAB40A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00EB262892B700AAB40A /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 		5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questrial-Regular.ttf"; sourceTree = "<group>"; };
 		5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		5304F854262F475800690EB4 /* ViewControllerSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerSimulator.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerSimulator.swift"; sourceTree = "<absolute>"; };
+		5304F857262F893E00690EB4 /* ViewControllerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerItems.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerItems.swift"; sourceTree = "<absolute>"; };
+		5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCollectionViewCell.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/CustomCollectionViewCell.swift"; sourceTree = "<absolute>"; };
 		534D00E4262892B700AAB40A /* Fisica-Equilibrio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fisica-Equilibrio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		534D00E7262892B700AAB40A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		534D00E9262892B700AAB40A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				534D00E9262892B700AAB40A /* SceneDelegate.swift */,
 				534D00EB262892B700AAB40A /* ViewController.swift */,
 				5304F854262F475800690EB4 /* ViewControllerSimulator.swift */,
+				5304F857262F893E00690EB4 /* ViewControllerItems.swift */,
+				5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */,
 				5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */,
 				5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */,
 				534D00ED262892B700AAB40A /* Main.storyboard */,
@@ -157,6 +163,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */,
+				5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */,
 				534D00EC262892B700AAB40A /* ViewController.swift in Sources */,
 				534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */,
 				534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */,

@@ -16,7 +16,10 @@ class ViewController: UIViewController {
         
         imgBackground.image = UIImage(named: "menu-background")
     }
-
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
 
 }
 

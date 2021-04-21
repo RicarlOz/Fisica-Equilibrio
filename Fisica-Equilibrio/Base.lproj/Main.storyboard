@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -142,6 +143,9 @@
                                 <state key="normal" title="Objetos">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Huz-zl-KJy" kind="presentation" id="2Or-T7-RLY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiz-8E-15H">
                                 <rect key="frame" x="20" y="20" width="201" height="100"/>
@@ -251,9 +255,9 @@
                     <navigationItem key="navigationItem" id="gs7-4L-Vz5"/>
                     <connections>
                         <outlet property="btnForce" destination="SRk-bF-X44" id="y6s-Ar-9w3"/>
+                        <outlet property="btnItems" destination="63M-td-VVF" id="HTb-6w-ybv"/>
                         <outlet property="btnLevel" destination="A2I-3X-UJQ" id="2he-A4-odf"/>
                         <outlet property="btnMass" destination="dVz-Hg-D2W" id="1rr-OI-Ur9"/>
-                        <outlet property="btnObjects" destination="63M-td-VVF" id="Yhh-wM-Ig3"/>
                         <outlet property="btnRule" destination="10h-0l-td0" id="jIw-Zj-Zlq"/>
                         <outlet property="btnStart" destination="0ez-Fd-mLz" id="1oU-a0-Kmx"/>
                         <outlet property="imgBackground" destination="Jrs-C5-2Jx" id="RXc-t9-MW9"/>
@@ -265,6 +269,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ct-G7-dHC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857.72113943028489" y="104.8"/>
+        </scene>
+        <!--View Controller Items-->
+        <scene sceneID="1kB-yo-msp">
+            <objects>
+                <viewController id="Huz-zl-KJy" customClass="ViewControllerItems" customModule="Fisica_Equilibrio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LPo-td-nRK">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4D-Gl-tjQ">
+                                <rect key="frame" x="20" y="20" width="627" height="335"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyQ-Jz-gvG">
+                                        <rect key="frame" x="562" y="15" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <segue destination="wCc-6d-n1u" kind="unwind" unwindAction="closeItemsWithSegue:" id="BgE-rP-MqI"/>
+                                        </connections>
+                                    </button>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="XUx-eW-Eny">
+                                        <rect key="frame" x="252" y="289" width="123" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </pageControl>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E5N-HK-Y6O">
+                                        <rect key="frame" x="38" y="82" width="550" height="235"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="5" minimumInteritemSpacing="5" id="S7X-Wa-WZt">
+                                            <size key="itemSize" width="180" height="105"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="RPr-lq-8k7" customClass="CustomCollectionViewCell" customModule="Fisica_Equilibrio" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="105"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="adO-J0-zMB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="105"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nzS-gM-NWv">
+                                                            <rect key="frame" x="30" y="15" width="120" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lz4-hW-Hrj">
+                                                            <rect key="frame" x="69" y="73" width="43" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Questrial-Regular" family="Questrial" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="imgBlock" destination="nzS-gM-NWv" id="Or6-jG-RvC"/>
+                                                    <outlet property="lbWeight" destination="Lz4-hW-Hrj" id="GvU-b0-yZa"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.62352941179999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TbO-D5-iYc"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgView" destination="G4D-Gl-tjQ" id="E4o-kk-xdS"/>
+                        <outlet property="cvBlocks" destination="E5N-HK-Y6O" id="hhQ-Gm-17f"/>
+                        <outlet property="pcIndex" destination="XUx-eW-Eny" id="px3-sl-s5Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRA-9z-FWs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="wCc-6d-n1u" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1569.265367316342" y="104.8"/>
         </scene>
     </scenes>
     <resources>

@@ -24,7 +24,20 @@ class ViewControllerItems: UIViewController {
         return .landscape
     }
     
-
+    @IBAction func changePage(_ sender: Any) {
+        switch pcIndex.currentPage {
+        case 0:
+            cvBlocks.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+        case 1:
+            cvBlocks.scrollToItem(at: IndexPath(item: 6, section: 0), at: .centeredHorizontally, animated: true)
+        case 2:
+            cvBlocks.scrollToItem(at: IndexPath(item: 12, section: 0), at: .centeredHorizontally, animated: true)
+        default:
+            cvBlocks.scrollToItem(at: IndexPath(item: 19, section: 0), at: .right, animated: true)
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -39,19 +52,32 @@ class ViewControllerItems: UIViewController {
 
 extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Hi")
         return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print((indexPath.row + 1) * 5)
         let cell = cvBlocks.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         
         cell.imgBlock.image = UIImage(named: "\((indexPath.row + 1) * 5)")
-        cell.lbWeight.text = String((indexPath.row + 1) * 5)
+        cell.lbWeight.text = String((indexPath.row + 1) * 5) + " Kg"
         
         return cell
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(cvBlocks.contentOffset.x)
+        
+        if cvBlocks.contentOffset.x < 550 {
+            pcIndex.currentPage = 0
+        }
+        else if cvBlocks.contentOffset.x < 1100 {
+            pcIndex.currentPage = 1
+        }
+        else if cvBlocks.contentOffset.x < 1295 {
+            pcIndex.currentPage = 2
+        }
+        else {
+            pcIndex.currentPage = 3
+        }
+    }
 }

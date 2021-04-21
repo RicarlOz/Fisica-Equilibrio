@@ -14,7 +14,7 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imgBackground.image = UIImage(named: "quiz-background")
+        view.addBackground(imageName: "quiz-background")
     }
 
     @IBAction func goBack(_ sender: UIButton) {

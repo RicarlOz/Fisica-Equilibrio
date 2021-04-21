@@ -24,9 +24,9 @@
 /* Begin PBXFileReference section */
 		5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questrial-Regular.ttf"; sourceTree = "<group>"; };
 		5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
-		5304F854262F475800690EB4 /* ViewControllerSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerSimulator.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerSimulator.swift"; sourceTree = "<absolute>"; };
-		5304F857262F893E00690EB4 /* ViewControllerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerItems.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerItems.swift"; sourceTree = "<absolute>"; };
-		5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCollectionViewCell.swift; path = "/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/CustomCollectionViewCell.swift"; sourceTree = "<absolute>"; };
+		5304F854262F475800690EB4 /* ViewControllerSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerSimulator.swift; path = "Fisica-Equilibrio/ViewControllerSimulator.swift"; sourceTree = SOURCE_ROOT; };
+		5304F857262F893E00690EB4 /* ViewControllerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerItems.swift; path = "Fisica-Equilibrio/ViewControllerItems.swift"; sourceTree = SOURCE_ROOT; };
+		5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCollectionViewCell.swift; path = "Fisica-Equilibrio/CustomCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		534D00E4262892B700AAB40A /* Fisica-Equilibrio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fisica-Equilibrio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		534D00E7262892B700AAB40A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		534D00E9262892B700AAB40A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };

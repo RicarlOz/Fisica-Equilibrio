@@ -18,8 +18,6 @@
 		534D00EF262892B700AAB40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00ED262892B700AAB40A /* Main.storyboard */; };
 		534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F0262892BA00AAB40A /* Assets.xcassets */; };
 		534D00F4262892BA00AAB40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */; };
-		6F4564C526291737003DCAE7 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F4564C426291737003DCAE7 /* Righteous-Regular.ttf */; };
-		6F4564C8262917B1003DCAE7 /* Questrial-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F4564C7262917B1003DCAE7 /* Questrial-Regular.ttf */; };
 		6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2A545262FD325007525E5 /* QuizViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,8 +35,6 @@
 		534D00F0262892BA00AAB40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		534D00F3262892BA00AAB40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		534D00F5262892BA00AAB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F4564C426291737003DCAE7 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Righteous-Regular.ttf"; path = "../../../Downloads/Righteous/Righteous-Regular.ttf"; sourceTree = "<group>"; };
-		6F4564C7262917B1003DCAE7 /* Questrial-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Questrial-Regular.ttf"; path = "../../../Downloads/Questrial/Questrial-Regular.ttf"; sourceTree = "<group>"; };
 		6FE2A545262FD325007525E5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,8 +78,6 @@
 				5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */,
 				534D00ED262892B700AAB40A /* Main.storyboard */,
 				6FE2A545262FD325007525E5 /* QuizViewController.swift */,
-				6F4564C7262917B1003DCAE7 /* Questrial-Regular.ttf */,
-				6F4564C426291737003DCAE7 /* Righteous-Regular.ttf */,
 				534D00F0262892BA00AAB40A /* Assets.xcassets */,
 				534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */,
 				534D00F5262892BA00AAB40A /* Info.plist */,

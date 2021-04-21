@@ -2,27 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/CustomCollectionViewCell.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/CollectionViewController.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerItems.swift">
-   </FileRef>
-   <FileRef
-      location = "group:../Fisica-Equilibrio/ViewControllerSimulator.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/ViewControllerSimulator.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/Questrial-Regular.ttf">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/user190336/Documents/Fisica-Equilibrio/Fisica-Equilibrio/Righteous-Regular.ttf">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

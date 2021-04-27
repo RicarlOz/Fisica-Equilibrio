@@ -19,6 +19,7 @@
 		534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F0262892BA00AAB40A /* Assets.xcassets */; };
 		534D00F4262892BA00AAB40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */; };
 		6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2A545262FD325007525E5 /* QuizViewController.swift */; };
+		6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		534D00F3262892BA00AAB40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		534D00F5262892BA00AAB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FE2A545262FD325007525E5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				534D00E9262892B700AAB40A /* SceneDelegate.swift */,
 				534D00EB262892B700AAB40A /* ViewController.swift */,
 				5304F854262F475800690EB4 /* ViewControllerSimulator.swift */,
+				6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */,
 				5304F857262F893E00690EB4 /* ViewControllerItems.swift */,
 				5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */,
 				5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */,
 				5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */,
 				5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */,
 				534D00EC262892B700AAB40A /* ViewController.swift in Sources */,

@@ -110,7 +110,7 @@
         <scene sceneID="FlE-bh-RHT">
             <objects>
                 <viewController id="liX-As-wMV" customClass="ViewControllerSimulator" customModule="Fisica_Equilibrio" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WaU-xV-0Gu">
+                    <view key="view" contentMode="scaleToFill" id="WaU-xV-0Gu" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

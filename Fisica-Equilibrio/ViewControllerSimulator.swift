@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SpriteKit
+import GameplayKit
 
 class ViewControllerSimulator: UIViewController {
 
@@ -20,6 +22,7 @@ class ViewControllerSimulator: UIViewController {
     @IBOutlet weak var btnRule: UIButton!
     @IBOutlet weak var btnLevel: UIButton!
     
+    var currentScene: SimulatorScene?
     var isStarted: Bool = false
     var showMass: Bool = false
     var showForce: Bool = false
@@ -28,6 +31,16 @@ class ViewControllerSimulator: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let view = self.view as! SKView? {
+            if let scene = SKScene(fileNamed: "SimulatorScene") {
+                scene.scaleMode = .aspectFill
+                view.presentScene(scene)
+                
+                currentScene = scene as? SimulatorScene
+                currentScene?.viewController = self
+            }
+        }
 
         imgBackground.image = UIImage(named: "simulator-bg")
         btnStart.layer.cornerRadius = 9

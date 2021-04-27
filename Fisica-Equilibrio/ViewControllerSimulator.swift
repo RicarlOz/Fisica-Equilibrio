@@ -11,7 +11,6 @@ import GameplayKit
 
 class ViewControllerSimulator: UIViewController {
 
-    @IBOutlet weak var imgBackground: UIImageView!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
     @IBOutlet weak var lbTorque: UILabel!
@@ -41,8 +40,9 @@ class ViewControllerSimulator: UIViewController {
                 currentScene?.viewController = self
             }
         }
+        
+        //view.addBackground(imageName: "temp-menu-simulator")
 
-        imgBackground.image = UIImage(named: "simulator-bg")
         btnStart.layer.cornerRadius = 9
         btnStart.layer.borderWidth = 3
         btnStart.layer.borderColor = UIColor.black.cgColor

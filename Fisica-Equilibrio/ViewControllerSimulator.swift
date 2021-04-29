@@ -38,6 +38,8 @@ class ViewControllerSimulator: UIViewController {
                 
                 currentScene = scene as? SimulatorScene
                 currentScene?.viewController = self
+                
+                view.showsPhysics = true
             }
         }
         

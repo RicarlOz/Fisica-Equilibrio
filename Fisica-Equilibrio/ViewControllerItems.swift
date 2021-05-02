@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol addBlockProtocol {
+    func addBlock(block: Block)
+}
+
 class ViewControllerItems: UIViewController {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var pcIndex: UIPageControl!
     @IBOutlet weak var cvBlocks: UICollectionView!
+    
+    var delegate: addBlockProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +71,7 @@ extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(cvBlocks.contentOffset.x)
+        //print(cvBlocks.contentOffset.x)
         
         if cvBlocks.contentOffset.x < 550 {
             pcIndex.currentPage = 0
@@ -79,5 +85,11 @@ extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSour
         else {
             pcIndex.currentPage = 3
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newBlock = Block(weight: ((indexPath.row + 1) * 5), image: UIImage(named: "\((indexPath.row + 1) * 5)")!)
+        delegate.addBlock(block: newBlock)
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -7,8 +7,24 @@
 
 import UIKit
 
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var imgBackground: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addBackground(imageName: "menu-background")
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+
+}
+
 extension UIView {
-    func addBackground(imageName: String = "menu-background", contentMode: UIView.ContentMode = .scaleToFill) {
+    func addBackground(imageName: String, contentMode: UIView.ContentMode = .scaleToFill) {
         // setup the UIImageView
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: imageName)
@@ -27,20 +43,3 @@ extension UIView {
         NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
 }
-
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var imgBackground: UIImageView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.addBackground()
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-
-}
-

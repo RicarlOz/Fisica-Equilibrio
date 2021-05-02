@@ -7,9 +7,8 @@
 
 import UIKit
 
-class ViewControllerSimulator: UIViewController {
-
-    @IBOutlet weak var imgBackground: UIImageView!
+class ViewControllerSimulator: UIViewController, addBlockProtocol {
+    
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
     @IBOutlet weak var lbTorque: UILabel!
@@ -19,17 +18,20 @@ class ViewControllerSimulator: UIViewController {
     @IBOutlet weak var btnForce: UIButton!
     @IBOutlet weak var btnRule: UIButton!
     @IBOutlet weak var btnLevel: UIButton!
+    @IBOutlet weak var imgBar: UIImageView!
     
     var isStarted: Bool = false
     var showMass: Bool = false
     var showForce: Bool = false
     var showRule: Bool = false
     var showLevel: Bool = false
+    var blocks = [UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addBackground(imageName: "simulator-bg")
 
-        imgBackground.image = UIImage(named: "simulator-bg")
         btnStart.layer.cornerRadius = 9
         btnStart.layer.borderWidth = 3
         btnStart.layer.borderColor = UIColor.black.cgColor
@@ -107,14 +109,45 @@ class ViewControllerSimulator: UIViewController {
         }
     }
     
-    /*
+    func addBlock(block: Block) {
+        var blockHeight = CGFloat(30.0)
+        let blockWidth = imgBar.frame.size.width / 8
+        let blockX = view.frame.size.width / 2 - (blockWidth / 2)
+        var blockY = view.frame.size.height / 3
+        
+        if block.weight >= 35 && block.weight <= 60 {
+            blockHeight = blockHeight * 2
+            blockY = blockY - 15
+        }
+        else if block.weight >= 65 && block.weight <= 90 {
+            blockHeight = blockHeight * 3
+            blockY = blockY - 30
+        }
+        else if block.weight >= 95 && block.weight <= 100 {
+            blockHeight = blockHeight * 4
+            blockY = blockY - 45
+        }
+        
+        let newBlock = UIView(frame: CGRect(x: blockX, y: blockY, width: blockWidth, height: blockHeight))
+        newBlock.addBackground(imageName: "\(block.weight)")
+        newBlock.tag = blocks.count
+        
+        let weightLb = UILabel(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockHeight))
+        weightLb.textAlignment = .center
+        weightLb.font = UIFont(name: "Questrial", size: 12.0)
+        weightLb.text = String(block.weight) + " Kg"
+        newBlock.addSubview(weightLb)
+        
+        view.addSubview(newBlock)
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let itemsView = segue.destination as? ViewControllerItems
+        itemsView?.delegate = self
     }
-    */
+    
 
 }

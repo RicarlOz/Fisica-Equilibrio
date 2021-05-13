@@ -89,7 +89,7 @@ extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let newBlock = Block(weight: ((indexPath.row + 1) * 5), image: UIImage(named: "\((indexPath.row + 1) * 5)")!)
-        delegate.addBlock(block: newBlock)
         dismiss(animated: true, completion: nil)
+        delegate.addBlock(block: newBlock)
     }
 }

@@ -7,11 +7,16 @@
 
 import UIKit
 
-class ViewControllerItems: UIViewController {
+protocol AddBrickProtocol {
+    func addBrick(brickWeight: Int)
+}
+
+class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var pcIndex: UIPageControl!
     @IBOutlet weak var cvBlocks: UICollectionView!
+    var delegate : AddBrickProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +42,7 @@ class ViewControllerItems: UIViewController {
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSource {
+    // MARK: - Collection View Protocol Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
     }
@@ -80,4 +72,20 @@ extension ViewControllerItems:UICollectionViewDelegate, UICollectionViewDataSour
             pcIndex.currentPage = 3
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate.addBrick(brickWeight: (indexPath.row + 1) * 5)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

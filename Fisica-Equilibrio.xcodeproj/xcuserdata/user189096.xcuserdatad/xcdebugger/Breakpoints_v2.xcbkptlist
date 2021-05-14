@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "AB70DF78-E829-4D16-9ADB-6340C12925E0"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrickNode.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "BrickNode"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5 - 5c34574fb3fffee8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fisica_Equilibrio.BrickNode.__deallocating_deinit"
+                  moduleName = "Fisica-Equilibrio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user189096/Documents/Fisica-Equilibrio/BrickNode.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5 - e6a07de34b9a3484"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fisica_Equilibrio.BrickNode.__allocating_init(texture: Swift.Optional&lt;__C.SKTexture&gt;, color: __C.UIColor, size: __C.CGSize) -&gt; Fisica_Equilibrio.BrickNode"
+                  moduleName = "Fisica-Equilibrio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user189096/Documents/Fisica-Equilibrio/BrickNode.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5 - ac58609ebf85774f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fisica_Equilibrio.BrickNode.init(texture: Swift.Optional&lt;__C.SKTexture&gt;, color: __C.UIColor, size: __C.CGSize) -&gt; Fisica_Equilibrio.BrickNode"
+                  moduleName = "Fisica-Equilibrio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user189096/Documents/Fisica-Equilibrio/BrickNode.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "179">
+               </Location>
+               <Location
+                  uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5 - 61b755500f4ea9a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fisica_Equilibrio.BrickNode.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Fisica_Equilibrio.BrickNode&gt;"
+                  moduleName = "Fisica-Equilibrio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user189096/Documents/Fisica-Equilibrio/BrickNode.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "2E85DCC9-3623-40DB-93D6-61D4FABF6CA5 - 48510c97334e1095"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fisica_Equilibrio.BrickNode.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Fisica_Equilibrio.BrickNode&gt;"
+                  moduleName = "Fisica-Equilibrio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user189096/Documents/Fisica-Equilibrio/BrickNode.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "239">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAA97D64-8EF2-4056-924C-C9F6EE8039BB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrickNode.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "setup(brickWeight:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF67A39E-E649-4D93-B70B-303F81B159DE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fisica-Equilibrio/SimulatorScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "touchesMoved(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3B084D0-7B59-435F-B0A4-B235562CE7F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fisica-Equilibrio/SimulatorScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "touchesEnded(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B44C8E09-E139-4CC5-A0FE-8D9A90DE838D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fisica-Equilibrio/SimulatorScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "touchesMoved(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF5173FC-039C-4447-982A-F38ACD27E9C4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fisica-Equilibrio/SimulatorScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "touchesMoved(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9CDC8FE6-6D38-4823-912C-44A91C574EB3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fisica-Equilibrio/SimulatorScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "touchesEnded(_:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -9,7 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class ViewControllerSimulator: UIViewController {
+class ViewControllerSimulator: UIViewController, AddBrickProtocol {
 
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
@@ -38,8 +38,6 @@ class ViewControllerSimulator: UIViewController {
                 
                 currentScene = scene as? SimulatorScene
                 currentScene?.viewController = self
-                
-                view.showsPhysics = true
             }
         }
         
@@ -122,14 +120,15 @@ class ViewControllerSimulator: UIViewController {
         }
     }
     
-    /*
+    func addBrick(brickWeight: Int) {
+        currentScene!.addBrick(brickWeight: brickWeight)
+    }
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let itemsView = segue.destination as? ViewControllerItems
+        itemsView?.delegate = self
     }
-    */
 
 }

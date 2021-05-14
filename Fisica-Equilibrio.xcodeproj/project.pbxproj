@@ -1,0 +1,383 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5304F851262F46DC00690EB4 /* Questrial-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */; };
+		5304F852262F46DC00690EB4 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */; };
+		5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F854262F475800690EB4 /* ViewControllerSimulator.swift */; };
+		5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F857262F893E00690EB4 /* ViewControllerItems.swift */; };
+		5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */; };
+		534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00E7262892B700AAB40A /* AppDelegate.swift */; };
+		534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00E9262892B700AAB40A /* SceneDelegate.swift */; };
+		534D00EC262892B700AAB40A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534D00EB262892B700AAB40A /* ViewController.swift */; };
+		534D00EF262892B700AAB40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00ED262892B700AAB40A /* Main.storyboard */; };
+		534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F0262892BA00AAB40A /* Assets.xcassets */; };
+		534D00F4262892BA00AAB40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */; };
+		6FBBC4B7264DCCEB0089E0D6 /* BrickNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC4B6264DCCEB0089E0D6 /* BrickNode.swift */; };
+		6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2A545262FD325007525E5 /* QuizViewController.swift */; };
+		6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */; };
+		6FFFAAE82638D41B00DAB729 /* SimulatorScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Questrial-Regular.ttf"; sourceTree = "<group>"; };
+		5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		5304F854262F475800690EB4 /* ViewControllerSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerSimulator.swift; path = "Fisica-Equilibrio/ViewControllerSimulator.swift"; sourceTree = SOURCE_ROOT; };
+		5304F857262F893E00690EB4 /* ViewControllerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerItems.swift; path = "Fisica-Equilibrio/ViewControllerItems.swift"; sourceTree = SOURCE_ROOT; };
+		5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCollectionViewCell.swift; path = "Fisica-Equilibrio/CustomCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		534D00E4262892B700AAB40A /* Fisica-Equilibrio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fisica-Equilibrio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		534D00E7262892B700AAB40A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		534D00E9262892B700AAB40A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		534D00EB262892B700AAB40A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		534D00EE262892B700AAB40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		534D00F0262892BA00AAB40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		534D00F3262892BA00AAB40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		534D00F5262892BA00AAB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FBBC4B6264DCCEB0089E0D6 /* BrickNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickNode.swift; sourceTree = "<group>"; };
+		6FE2A545262FD325007525E5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorScene.swift; sourceTree = "<group>"; };
+		6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SimulatorScene.sks; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		534D00E1262892B700AAB40A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		534D00DB262892B700AAB40A = {
+			isa = PBXGroup;
+			children = (
+				6FBBC4B6264DCCEB0089E0D6 /* BrickNode.swift */,
+				534D00E6262892B700AAB40A /* Fisica-Equilibrio */,
+				534D00E5262892B700AAB40A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		534D00E5262892B700AAB40A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				534D00E4262892B700AAB40A /* Fisica-Equilibrio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		534D00E6262892B700AAB40A /* Fisica-Equilibrio */ = {
+			isa = PBXGroup;
+			children = (
+				534D00E7262892B700AAB40A /* AppDelegate.swift */,
+				534D00E9262892B700AAB40A /* SceneDelegate.swift */,
+				534D00EB262892B700AAB40A /* ViewController.swift */,
+				5304F854262F475800690EB4 /* ViewControllerSimulator.swift */,
+				6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */,
+				6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */,
+				5304F857262F893E00690EB4 /* ViewControllerItems.swift */,
+				5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */,
+				5304F84F262F46DC00690EB4 /* Questrial-Regular.ttf */,
+				5304F850262F46DC00690EB4 /* Righteous-Regular.ttf */,
+				534D00ED262892B700AAB40A /* Main.storyboard */,
+				6FE2A545262FD325007525E5 /* QuizViewController.swift */,
+				534D00F0262892BA00AAB40A /* Assets.xcassets */,
+				534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */,
+				534D00F5262892BA00AAB40A /* Info.plist */,
+			);
+			path = "Fisica-Equilibrio";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		534D00E3262892B700AAB40A /* Fisica-Equilibrio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 534D00F8262892BA00AAB40A /* Build configuration list for PBXNativeTarget "Fisica-Equilibrio" */;
+			buildPhases = (
+				534D00E0262892B700AAB40A /* Sources */,
+				534D00E1262892B700AAB40A /* Frameworks */,
+				534D00E2262892B700AAB40A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fisica-Equilibrio";
+			productName = "Fisica-Equilibrio";
+			productReference = 534D00E4262892B700AAB40A /* Fisica-Equilibrio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		534D00DC262892B700AAB40A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					534D00E3262892B700AAB40A = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 534D00DF262892B700AAB40A /* Build configuration list for PBXProject "Fisica-Equilibrio" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 534D00DB262892B700AAB40A;
+			productRefGroup = 534D00E5262892B700AAB40A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				534D00E3262892B700AAB40A /* Fisica-Equilibrio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		534D00E2262892B700AAB40A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				534D00F4262892BA00AAB40A /* LaunchScreen.storyboard in Resources */,
+				6FFFAAE82638D41B00DAB729 /* SimulatorScene.sks in Resources */,
+				534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */,
+				5304F852262F46DC00690EB4 /* Righteous-Regular.ttf in Resources */,
+				5304F851262F46DC00690EB4 /* Questrial-Regular.ttf in Resources */,
+				534D00EF262892B700AAB40A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		534D00E0262892B700AAB40A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */,
+				5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */,
+				5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */,
+				534D00EC262892B700AAB40A /* ViewController.swift in Sources */,
+				534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */,
+				534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */,
+				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
+				6FBBC4B7264DCCEB0089E0D6 /* BrickNode.swift in Sources */,
+				6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */,
+				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		534D00ED262892B700AAB40A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				534D00EE262892B700AAB40A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				534D00F3262892BA00AAB40A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		534D00F6262892BA00AAB40A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		534D00F7262892BA00AAB40A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		534D00F9262892BA00AAB40A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 263P7U2UTC;
+				INFOPLIST_FILE = "Fisica-Equilibrio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ITESM.Fisica-Equilibrio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		534D00FA262892BA00AAB40A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 263P7U2UTC;
+				INFOPLIST_FILE = "Fisica-Equilibrio/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ITESM.Fisica-Equilibrio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		534D00DF262892B700AAB40A /* Build configuration list for PBXProject "Fisica-Equilibrio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				534D00F6262892BA00AAB40A /* Debug */,
+				534D00F7262892BA00AAB40A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		534D00F8262892BA00AAB40A /* Build configuration list for PBXNativeTarget "Fisica-Equilibrio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				534D00F9262892BA00AAB40A /* Debug */,
+				534D00FA262892BA00AAB40A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 534D00DC262892B700AAB40A /* Project object */;
+}

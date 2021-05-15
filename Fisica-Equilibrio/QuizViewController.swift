@@ -16,6 +16,10 @@ class QuizViewController: UIViewController {
         
         view.addBackground(imageName: "quiz-background")
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
 
     @IBAction func goBack(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

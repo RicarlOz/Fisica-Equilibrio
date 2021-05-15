@@ -13,6 +13,8 @@ import SpriteKit
 }*/
 
 class SimulatorScene: SKScene {
+    
+    var trash = SKSpriteNode(imageNamed: "trashClosed")
 
     weak var viewController: ViewControllerSimulator?
     var background = SKSpriteNode(imageNamed: "temp-menu-simulator")
@@ -46,6 +48,11 @@ class SimulatorScene: SKScene {
         scaleBase.physicsBody?.isDynamic = false
         addChild(scale)
         addChild(scaleBase)
+        
+        trash.size = CGSize(width: 80, height: 80)
+        trash.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height / 2 - scaleBase.size.height / 2)
+        trash.isHidden = true
+        addChild(trash)
         
         floor.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: (scaleBase.position.y - scaleBase.size.height / 2)), to: CGPoint(x: frame.size.width, y: (scaleBase.position.y - scaleBase.size.height / 2)))
         floor.physicsBody?.restitution = 0
@@ -95,6 +102,8 @@ class SimulatorScene: SKScene {
         }
         
         if touchedNode is SKSpriteNode && touchedNode.name == "brick" {
+            trash.isHidden = false
+            
             if !selectedBrick.isEqual(touchedNode) {
                 selectedBrick = touchedNode as! BrickNode
             }
@@ -155,6 +164,16 @@ class SimulatorScene: SKScene {
                     brickPosition = 7
                     xBrickPosition = 0.4375
                 }
+                
+                if (location.x + selectedBrick.size.width / 2 > trash.position.x + 20 && location.x + selectedBrick.size.width / 2 < trash.position.x + 100) &&
+                    (location.y - selectedBrick.size.height / 2 > trash.position.y - 60 && location.y - selectedBrick.size.height / 2 < trash.position.y + 20) {
+                    trash.texture = SKTexture(imageNamed: "trashOpen")
+                }
+                else {
+                    trash.texture = SKTexture(imageNamed: "trashClosed")
+                }
+                print(location)
+                
                 positionBrick.position.x = scale.size.width * xBrickPosition
             }
         }
@@ -175,6 +194,14 @@ class SimulatorScene: SKScene {
             
             brickIsSelected = false
         }
+        
+        let location = touches.first?.location(in: self)
+        if (location!.x + selectedBrick.size.width / 2 > trash.position.x + 20 && location!.x + selectedBrick.size.width / 2 < trash.position.x + 100) &&
+            (location!.y - selectedBrick.size.height / 2 > trash.position.y - 60 && location!.y - selectedBrick.size.height / 2 < trash.position.y + 20)   {
+            selectedBrick.removeFromParent()
+        }
+        
+        trash.isHidden = true
     }
     
     func showMass(show: Bool) {

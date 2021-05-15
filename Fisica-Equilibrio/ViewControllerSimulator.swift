@@ -13,6 +13,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
     
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
+    @IBOutlet weak var btnExit: UIButton!
     @IBOutlet weak var lbTorque: UILabel!
     @IBOutlet weak var vTools: UIView!
     @IBOutlet weak var imgLock: UIImageView!
@@ -49,6 +50,9 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         btnItems.layer.cornerRadius = 9
         btnItems.layer.borderWidth = 3
         btnItems.layer.borderColor = UIColor.black.cgColor
+        btnExit.layer.cornerRadius = 9
+        btnExit.layer.borderWidth = 3
+        btnExit.layer.borderColor = UIColor.black.cgColor
         lbTorque.layer.cornerRadius = 9
         lbTorque.layer.masksToBounds = true
         vTools.layer.cornerRadius = 9
@@ -122,6 +126,10 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
             btnLevel.setImage(UIImage(named: "checked"), for: .normal)
             showLevel = true
         }
+    }
+    
+    @IBAction func exit(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     func addBrick(brickWeight: Int) {

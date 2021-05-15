@@ -80,6 +80,7 @@ class SimulatorScene: SKScene {
         
         let brick = BrickNode(imageNamed: String(brickWeight))
         brick.position = CGPoint(x: 0, y: scale.size.height * 8)
+        brick.setup(brickWeight: brickWeight)
         
         brick.addChild(lbWeight)
         scale.addChild(brick)
@@ -87,9 +88,13 @@ class SimulatorScene: SKScene {
     }
     
     func selectBrick(location: CGPoint) {
-        let touchedNode = self.atPoint(location)
+        var touchedNode = self.atPoint(location)
         
-        if touchedNode is SKSpriteNode && (touchedNode.name == "brick" || touchedNode.name == "lbWeight") {
+        if touchedNode is SKLabelNode && touchedNode.parent?.name == "brick" {
+            touchedNode = touchedNode.parent!
+        }
+        
+        if touchedNode is SKSpriteNode && touchedNode.name == "brick" {
             if !selectedBrick.isEqual(touchedNode) {
                 selectedBrick = touchedNode as! BrickNode
             }

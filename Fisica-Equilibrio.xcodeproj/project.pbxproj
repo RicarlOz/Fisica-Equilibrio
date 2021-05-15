@@ -18,6 +18,9 @@
 		534D00EF262892B700AAB40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00ED262892B700AAB40A /* Main.storyboard */; };
 		534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F0262892BA00AAB40A /* Assets.xcassets */; };
 		534D00F4262892BA00AAB40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534D00F2262892BA00AAB40A /* LaunchScreen.storyboard */; };
+		53879CA326505DFE007C8B93 /* QuizScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53879CA226505DFE007C8B93 /* QuizScene.swift */; };
+		53879CA626505ECB007C8B93 /* ViewControllerQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53879CA526505ECB007C8B93 /* ViewControllerQuiz.swift */; };
+		53879CAD265064A8007C8B93 /* QuizScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 53879CAC265064A8007C8B93 /* QuizScene.sks */; };
 		6FBBC4B7264DCCEB0089E0D6 /* BrickNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC4B6264DCCEB0089E0D6 /* BrickNode.swift */; };
 		6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2A545262FD325007525E5 /* QuizViewController.swift */; };
 		6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */; };
@@ -38,6 +41,9 @@
 		534D00F0262892BA00AAB40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		534D00F3262892BA00AAB40A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		534D00F5262892BA00AAB40A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53879CA226505DFE007C8B93 /* QuizScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizScene.swift; sourceTree = "<group>"; };
+		53879CA526505ECB007C8B93 /* ViewControllerQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuiz.swift; sourceTree = "<group>"; };
+		53879CAC265064A8007C8B93 /* QuizScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = QuizScene.sks; sourceTree = "<group>"; };
 		6FBBC4B6264DCCEB0089E0D6 /* BrickNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickNode.swift; sourceTree = "<group>"; };
 		6FE2A545262FD325007525E5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorScene.swift; sourceTree = "<group>"; };
@@ -80,6 +86,9 @@
 				534D00EB262892B700AAB40A /* ViewController.swift */,
 				5304F854262F475800690EB4 /* ViewControllerSimulator.swift */,
 				6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */,
+				53879CA226505DFE007C8B93 /* QuizScene.swift */,
+				53879CA526505ECB007C8B93 /* ViewControllerQuiz.swift */,
+				53879CAC265064A8007C8B93 /* QuizScene.sks */,
 				6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */,
 				5304F857262F893E00690EB4 /* ViewControllerItems.swift */,
 				5304F85D262FA5FA00690EB4 /* CustomCollectionViewCell.swift */,
@@ -155,6 +164,7 @@
 				6FFFAAE82638D41B00DAB729 /* SimulatorScene.sks in Resources */,
 				534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */,
 				5304F852262F46DC00690EB4 /* Righteous-Regular.ttf in Resources */,
+				53879CAD265064A8007C8B93 /* QuizScene.sks in Resources */,
 				5304F851262F46DC00690EB4 /* Questrial-Regular.ttf in Resources */,
 				534D00EF262892B700AAB40A /* Main.storyboard in Resources */,
 			);
@@ -169,10 +179,12 @@
 			files = (
 				6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */,
 				5304F85E262FA5FA00690EB4 /* CustomCollectionViewCell.swift in Sources */,
+				53879CA326505DFE007C8B93 /* QuizScene.swift in Sources */,
 				5304F858262F893E00690EB4 /* ViewControllerItems.swift in Sources */,
 				534D00EC262892B700AAB40A /* ViewController.swift in Sources */,
 				534D00E8262892B700AAB40A /* AppDelegate.swift in Sources */,
 				534D00EA262892B700AAB40A /* SceneDelegate.swift in Sources */,
+				53879CA626505ECB007C8B93 /* ViewControllerQuiz.swift in Sources */,
 				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
 				6FBBC4B7264DCCEB0089E0D6 /* BrickNode.swift in Sources */,
 				6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */,

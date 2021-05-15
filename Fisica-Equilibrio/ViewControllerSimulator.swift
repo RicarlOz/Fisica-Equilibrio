@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class ViewControllerSimulator: UIViewController, AddBrickProtocol {
-
+    
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
     @IBOutlet weak var lbTorque: UILabel!
@@ -80,10 +80,14 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         if showMass {
             btnMass.setImage(UIImage(named: "unchecked"), for: .normal)
             showMass = false
+            
+            currentScene!.showMass(show: showMass)
         }
         else {
             btnMass.setImage(UIImage(named: "checked"), for: .normal)
             showMass = true
+            
+            currentScene!.showMass(show: showMass)
         }
     }
     
@@ -121,7 +125,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
     }
     
     func addBrick(brickWeight: Int) {
-        currentScene!.addBrick(brickWeight: brickWeight)
+        currentScene!.addBrick(brickWeight: brickWeight, swMass: showMass)
     }
     
     // MARK: - Navigation

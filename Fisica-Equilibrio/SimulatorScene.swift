@@ -66,10 +66,22 @@ class SimulatorScene: SKScene {
         xScalePositions.append(scale.position.x + (scale.size.width * 0.375))
     }
     
-    func addBrick(brickWeight: Int) {
+    func addBrick(brickWeight: Int, swMass: Bool) {
+        let lbWeight = SKLabelNode(fontNamed: "Questrial")
+        lbWeight.text = String(brickWeight) + " Kg"
+        lbWeight.fontSize = 24
+        lbWeight.fontColor = .black
+        lbWeight.horizontalAlignmentMode = .center
+        lbWeight.verticalAlignmentMode = .center
+        lbWeight.name = "lbWeight"
+        if !swMass {
+            lbWeight.isHidden = true
+        }
+        
         let brick = BrickNode(imageNamed: String(brickWeight))
         brick.position = CGPoint(x: 0, y: scale.size.height * 8)
-        brick.setup(brickWeight: brickWeight)
+        
+        brick.addChild(lbWeight)
         scale.addChild(brick)
         bricks.append(brick)
     }
@@ -77,7 +89,7 @@ class SimulatorScene: SKScene {
     func selectBrick(location: CGPoint) {
         let touchedNode = self.atPoint(location)
         
-        if touchedNode is SKSpriteNode && touchedNode.name == "brick" {
+        if touchedNode is SKSpriteNode && (touchedNode.name == "brick" || touchedNode.name == "lbWeight") {
             if !selectedBrick.isEqual(touchedNode) {
                 selectedBrick = touchedNode as! BrickNode
             }
@@ -160,4 +172,16 @@ class SimulatorScene: SKScene {
         }
     }
     
+    func showMass(show: Bool) {
+        if show {
+            for brick in bricks {
+                brick.childNode(withName: "lbWeight")?.isHidden = false
+            }
+        }
+        else {
+            for brick in bricks {
+                brick.childNode(withName: "lbWeight")?.isHidden = true
+            }
+        }
+    }
 }

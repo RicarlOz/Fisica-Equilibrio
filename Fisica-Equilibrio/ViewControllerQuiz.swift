@@ -14,18 +14,17 @@ class ViewControllerQuiz: UIViewController {
     @IBOutlet weak var btnCheck: UIButton!
     @IBOutlet weak var btnHelp: UIButton!
     @IBOutlet weak var btnExit: UIButton!
-    @IBOutlet weak var imgLock: UIImageView!
+    //@IBOutlet weak var imgLock: UIImageView!
     @IBOutlet weak var btnMass: UIButton!
-    @IBOutlet weak var btnForce: UIButton!
     @IBOutlet weak var btnRule: UIButton!
-    @IBOutlet weak var btnLevel: UIButton!
+    @IBOutlet weak var lbResult: UILabel!
     
     var currentScene: QuizScene?
-    var isStarted: Bool = false
+//    var isStarted: Bool = false
     var showMass: Bool = false
-    var showForce: Bool = false
     var showRule: Bool = false
-    var showLevel: Bool = false
+    
+    var selectedLevel: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +36,8 @@ class ViewControllerQuiz: UIViewController {
                 
                 currentScene = scene as? QuizScene
                 currentScene?.viewController = self
+                
+                LoadQuiz()
             }
         }
         
@@ -58,32 +59,46 @@ class ViewControllerQuiz: UIViewController {
         return .landscape
     }
     
-    func LoadQuiz1() {
-        print("Loading quiz 1...")
-    }
-    
-    func LoadQuiz2() {
-        print("Loading quiz 2...")
-    }
-    
-    func LoadQuiz3() {
-        print("Loading quiz 3...")
-    }
-    
-    @IBAction func closeItems(segue: UIStoryboardSegue) {
-        
+    func LoadQuiz() {
+        // 0 es el centro de posicion
+        print("Loading quiz...")
+        switch selectedLevel {
+        case 1:
+            addBrick(brickWeight: 30, posX: 1)
+            addBrick(brickWeight: 30, posX: -1)
+            break
+        case 2:
+            addBrick(brickWeight: 20, posX: -1)
+            addBrick(brickWeight: 10, posX: 0)
+            break
+        case 3:
+            addBrick(brickWeight: 15, posX: 0)
+            addBrick(brickWeight: 30, posX: 1)
+            break
+        default:
+            print("Nivel no identificado")
+            break
+        }
     }
 
-    @IBAction func StartSimulation(_ sender: Any) {
+    @IBAction func CheckAnswer(_ sender: UIButton) {
+        let result = currentScene!.checkQuiz()
         
-        if isStarted {
-            imgLock.image = UIImage(named: "locked")
-            isStarted = false
+        lbResult.isHidden = false
+        
+        lbResult.layer.cornerRadius = 9
+        lbResult.layer.borderWidth = 3
+        lbResult.layer.borderColor = UIColor.black.cgColor
+        
+        if result {
+            lbResult.text = "Correcto ✅"
+        } else {
+            lbResult.text = "Incorrecto ❌"
         }
-        else {
-            imgLock.image = UIImage(named: "unlocked")
-            isStarted = true
-        }
+    }
+    
+    @IBAction func getHint(_ sender: UIButton) {
+        
     }
     
     @IBAction func CheckboxMass(_ sender: Any) {
@@ -102,17 +117,6 @@ class ViewControllerQuiz: UIViewController {
         }
     }
     
-    @IBAction func CheckboxForce(_ sender: Any) {
-        if showForce {
-            btnForce.setImage(UIImage(named: "unchecked"), for: .normal)
-            showForce = false
-        }
-        else {
-            btnForce.setImage(UIImage(named: "checked"), for: .normal)
-            showForce = true
-        }
-    }
-    
     @IBAction func CheckboxRule(_ sender: Any) {
         if showRule {
             btnRule.setImage(UIImage(named: "unchecked"), for: .normal)
@@ -124,23 +128,12 @@ class ViewControllerQuiz: UIViewController {
         }
     }
     
-    @IBAction func CheckboxLevel(_ sender: Any) {
-        if showLevel {
-            btnLevel.setImage(UIImage(named: "unchecked"), for: .normal)
-            showLevel = false
-        }
-        else {
-            btnLevel.setImage(UIImage(named: "checked"), for: .normal)
-            showLevel = true
-        }
-    }
-    
     @IBAction func exit(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    func addBrick(brickWeight: Int) {
-        //currentScene!.addBrick(brickWeight: brickWeight, swMass: showMass)
+    func addBrick(brickWeight: Int, posX: Int) {
+        currentScene!.addBrick(brickWeight: brickWeight, posX: posX, swMass: showMass)
     }
     
     // MARK: - Navigation
@@ -149,13 +142,5 @@ class ViewControllerQuiz: UIViewController {
         //let itemsView = segue.destination as? ViewControllerItems
         //itemsView?.delegate = self
     }
-
-    
-    // MARK: - Navigation
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//    }
-    
 
 }

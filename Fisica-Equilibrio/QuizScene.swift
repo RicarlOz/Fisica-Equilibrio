@@ -61,26 +61,26 @@ class QuizScene: SKScene {
         xScalePositions.append(scale.position.x + (scale.size.width * 0.375))
     }
     
-//    func addBrick(brickWeight: Int, swMass: Bool) {
-//        let lbWeight = SKLabelNode(fontNamed: "Questrial")
-//        lbWeight.text = String(brickWeight) + " Kg"
-//        lbWeight.fontSize = 24
-//        lbWeight.fontColor = .black
-//        lbWeight.horizontalAlignmentMode = .center
-//        lbWeight.verticalAlignmentMode = .center
-//        lbWeight.name = "lbWeight"
-//        if !swMass {
-//            lbWeight.isHidden = true
-//        }
-//
-//        let brick = BrickNode(imageNamed: String(brickWeight))
-//        brick.position = CGPoint(x: 0, y: scale.size.height * 8)
-//        brick.setup(brickWeight: brickWeight)
-//
-//        brick.addChild(lbWeight)
-//        scale.addChild(brick)
-//        bricks.append(brick)
-//    }
+    func addBrick(brickWeight: Int, posX: Int, swMass: Bool) {
+        let lbWeight = SKLabelNode(fontNamed: "Questrial")
+        lbWeight.text = String(brickWeight) + " Kg"
+        lbWeight.fontSize = 24
+        lbWeight.fontColor = .black
+        lbWeight.horizontalAlignmentMode = .center
+        lbWeight.verticalAlignmentMode = .center
+        lbWeight.name = "lbWeight"
+        if !swMass {
+            lbWeight.isHidden = true
+        }
+
+        let brick = BrickNode(imageNamed: String(brickWeight))
+        brick.position = CGPoint(x: Int(brick.size.width) * posX, y: Int(scale.size.height) * 8)
+        brick.setup(brickWeight: brickWeight)
+
+        brick.addChild(lbWeight)
+        scale.addChild(brick)
+        bricks.append(brick)
+    }
     
     func selectBrick(location: CGPoint) {
         var touchedNode = self.atPoint(location)
@@ -185,5 +185,22 @@ class QuizScene: SKScene {
                 brick.childNode(withName: "lbWeight")?.isHidden = true
             }
         }
+    }
+    
+    func checkQuiz() -> Bool {
+        var totalTorque = 0.0
+        
+        for brick in bricks {
+            let bPos = Double((brick.brickPosition-3 > 0 ? brick.brickPosition-3: brick.brickPosition-4)) * 0.25
+            
+            print("\(bPos) - \(brick.bWeight)")
+            
+            totalTorque += bPos * Double(brick.bWeight)
+        }
+        
+        print("total = \(totalTorque)")
+        print("return = \(totalTorque == 0)")
+        
+        return totalTorque == 0
     }
 }

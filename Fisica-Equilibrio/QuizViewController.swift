@@ -44,15 +44,12 @@ class QuizViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let quizView = segue.destination as! ViewControllerQuiz
         
-        switch selectedQuiz {
-        case 1:
-            quizView.LoadQuiz1()
-        case 2:
-            quizView.LoadQuiz2()
-        case 3:
-            quizView.LoadQuiz3()
-        default:
-            print("Quiz doesn't exists.")
+        if let level = segue.identifier {
+            if (level == "1" || level == "2" || level == "3") {
+                quizView.selectedLevel = Int(level)
+            } else {
+                print("Quiz doesn't exists.")
+            }
         }
     }
 }

@@ -70,11 +70,11 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
     @IBAction func StartSimulation(_ sender: Any) {
         
         if isStarted {
-            imgLock.image = UIImage(named: "locked")
+            //imgLock.image = UIImage(named: "locked")
             isStarted = false
         }
         else {
-            imgLock.image = UIImage(named: "unlocked")
+            //imgLock.image = UIImage(named: "unlocked")
             isStarted = true
         }
     }

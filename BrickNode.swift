@@ -11,10 +11,12 @@ import UIKit
 class BrickNode: SKSpriteNode {
     
     var brickPosition : Int = -1
+    var bWeight: Int = 0
 
     func setup(brickWeight: Int) {
         name = "brick"
         texture = SKTexture(imageNamed: String(brickWeight))
+        bWeight = brickWeight
         //physicsBody = SKPhysicsBody(texture: texture!, size: size)
         //physicsBody?.categoryBitMask = CollisionTypes.brick.rawValue
         //physicsBody?.collisionBitMask = CollisionTypes.scale.rawValue

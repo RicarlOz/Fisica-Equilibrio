@@ -123,9 +123,9 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "touchesMoved(_:with:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "selectBrick(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -139,10 +139,10 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "touchesEnded(_:with:)"
-            landmarkType = "9">
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "touchesMoved(_:with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -155,8 +155,8 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "touchesMoved(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -171,9 +171,9 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "touchesMoved(_:with:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "selectBrick(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -187,10 +187,10 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "touchesEnded(_:with:)"
-            landmarkType = "9">
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "touchesMoved(_:with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

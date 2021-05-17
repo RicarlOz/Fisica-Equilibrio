@@ -57,8 +57,6 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(cvBlocks.contentOffset.x)
-        
         if cvBlocks.contentOffset.x < 550 {
             pcIndex.currentPage = 0
         }

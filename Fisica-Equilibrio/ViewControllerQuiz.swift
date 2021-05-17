@@ -64,21 +64,103 @@ class ViewControllerQuiz: UIViewController {
         print("Loading quiz...")
         switch selectedLevel {
         case 1:
-            addBrick(brickWeight: 30, posX: 1)
-            addBrick(brickWeight: 30, posX: -1)
+            // 2 bloques
+//            let brickPull = Array(stride(from: 10, to: 101, by: 10))
+//            let askIndex = Int.random(in: 0..<brickPull.count)
+//            let answer = (brickPull[askIndex]/2)
+//
+//            addBrick(brickWeight: brickPull[askIndex], posX: -1)
+//            addBrick(brickWeight: answer, posX: 1)
+            let bricks = generateQuiz(N: 2)
+            
+            addBrick(brickWeight: bricks[0], posX: -1)
+            addBrick(brickWeight: bricks[1], posX: 1)
             break
         case 2:
-            addBrick(brickWeight: 20, posX: -1)
-            addBrick(brickWeight: 10, posX: 0)
+            // 3 bloques
+            let randomCount = Int.random(in: 0..<23)
+            if randomCount < 2 {
+                let brickPull = Array(stride(from: 50, to: 101, by: 50))
+                let ask = brickPull[Int.random(in: 0..<brickPull.count)]
+                let answ1 = ask/5
+                let answ2 = answ1/2
+                
+                addBrick(brickWeight: ask, posX: -1)
+                addBrick(brickWeight: answ1, posX: 0)
+                addBrick(brickWeight: answ2, posX: 1)
+            } else if (randomCount >= 2 && randomCount < 7) {
+                let brickPull = Array(stride(from: 20, to: 101, by: 20))
+                let ask = brickPull[Int.random(in: 0..<brickPull.count)]
+                let answ1 = ask/2
+                let answ2 = answ1/2
+                
+                addBrick(brickWeight: ask, posX: -1)
+                addBrick(brickWeight: answ1, posX: 0)
+                addBrick(brickWeight: answ2, posX: 1)
+            } else {
+                let brickPull = Array(stride(from: 10, to: 86, by: 5))
+                let ask = brickPull[Int.random(in: 0..<brickPull.count)]
+                let answ1 = ask+15
+                let answ2 = ask-5
+                
+                addBrick(brickWeight: ask, posX: -1)
+                addBrick(brickWeight: answ1, posX: 0)
+                addBrick(brickWeight: answ2, posX: 1)
+            }
             break
         case 3:
-            addBrick(brickWeight: 15, posX: 0)
-            addBrick(brickWeight: 30, posX: 1)
+            //4 bloques
+            let bricks = generateQuiz(N: 4)
+            
+            addBrick(brickWeight: bricks[0], posX: -2)
+            addBrick(brickWeight: bricks[1], posX: -1)
+            addBrick(brickWeight: bricks[2], posX: 0)
+            addBrick(brickWeight: bricks[3], posX: 1)
             break
         default:
             print("Nivel no identificado")
             break
         }
+    }
+    
+    func generateQuiz(N: Int) -> Array<Int> {
+        var result = Array<Int>()
+        
+        while result.count != N {
+            var brickPull = Array(stride(from: 5, to: 101, by: 5))
+            
+            for _ in 0..<N-1 {
+                let randIndex = Int.random(in: 0..<brickPull.count)
+                result.append(brickPull[randIndex])
+                brickPull.remove(at: randIndex)
+            }
+            
+            result.shuffle()
+            
+            let d = Array(stride(from: 0.25, to: 1.1, by: 0.25))
+            var sum = 0.0
+            for i in 0..<result.count {
+                let randMult = Int.random(in: 0..<d.count)
+                sum += Double(result[i]) * d[randMult]
+            }
+            
+            let res1 = d.map{ sum/$0 }
+            let res2 = res1.filter{ ($0.remainder(dividingBy: 5) == 0) }
+            let res3 = res2.filter{ ($0 > 0) && ($0 <= 100) }
+            var ans = res3.filter{ (brickPull.contains(Int($0))) }
+            
+            if ans.count > 0 {
+                ans.shuffle()
+                result.append(Int(ans[0]))
+            }
+            else {
+                result.removeAll()
+            }
+        }
+        
+        print(result)
+        
+        return result
     }
 
     @IBAction func CheckAnswer(_ sender: UIButton) {
@@ -92,9 +174,16 @@ class ViewControllerQuiz: UIViewController {
         
         if result {
             lbResult.text = "Correcto ✅"
+            perform(#selector(exit), with: nil, afterDelay: 3)
         } else {
             lbResult.text = "Incorrecto ❌"
+            perform(#selector(hideAnswer), with: nil, afterDelay: 3)
         }
+        
+    }
+    
+    @objc func hideAnswer(){
+        lbResult.isHidden = true
     }
     
     @IBAction func getHint(_ sender: UIButton) {

@@ -7,11 +7,6 @@
 
 import SpriteKit
 
-/*enum CollisionTypes: UInt32 {
-    case scale = 1
-    case brick = 2
-}*/
-
 class SimulatorScene: SKScene {
     
     var trash = SKShapeNode(circleOfRadius: 40)
@@ -21,7 +16,8 @@ class SimulatorScene: SKScene {
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
     let floor = SKSpriteNode()
-    var bricks = [BrickNode]()
+    var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+    var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var selectedBrick = BrickNode()
     
     var positionBrick : SKShapeNode?
@@ -38,13 +34,13 @@ class SimulatorScene: SKScene {
         
         scale.size.width = frame.size.width * 0.8
         scale.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.4)
-        scale.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "bar"), size: scale.size)
+        scale.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width, height: scale.size.height))
         scale.physicsBody?.pinned = true
-        //scale.physicsBody?.categoryBitMask = CollisionTypes.scale.rawValue
-        //scale.physicsBody?.contactTestBitMask = CollisionTypes.brick.rawValue
+        scale.physicsBody?.mass = 100
+        
         scaleBase.size = CGSize(width: scale.size.height * 3, height: scale.size.height * 3)
         scaleBase.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height / 2 - scaleBase.size.height / 2)
-        scaleBase.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "base"), size: scaleBase.size)
+        //scaleBase.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "base"), size: scaleBase.size)
         scaleBase.physicsBody?.isDynamic = false
         addChild(scale)
         addChild(scaleBase)
@@ -63,6 +59,13 @@ class SimulatorScene: SKScene {
         positionBrick!.name = "positionBrick"
         positionBrick!.fillColor = UIColor(red: 116/255, green: 185/255, blue: 255/255, alpha: 0.5)
         xScalePositionsSetup()
+        
+        //Testing
+        let testNode = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10, height: 50))
+        testNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width / 10, height: 50))
+        testNode.position = CGPoint(x: 300, y: 30000)
+        testNode.physicsBody?.mass = 10
+        //addChild(testNode)
     }
     
     func xScalePositionsSetup() {
@@ -88,13 +91,16 @@ class SimulatorScene: SKScene {
         }
         
         let brick = BrickNode(imageNamed: String(brickWeight))
-        brick.position = CGPoint(x: 0, y: scale.size.height * 8)
+        brick.position = scene!.convert(CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8), to: scale)
         brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
         
         brick.addChild(lbWeight)
         scale.addChild(brick)
-        bricks.append(brick)
+        if let foundBrick = bricks[8] {
+            foundBrick.removeFromParent()
+        }
+        bricks[8] = brick
     }
     
     func selectBrick(location: CGPoint) {
@@ -105,8 +111,6 @@ class SimulatorScene: SKScene {
         }
         
         if touchedNode is SKSpriteNode && touchedNode.name == "brick" {
-            trash.isHidden = false
-            
             if !selectedBrick.isEqual(touchedNode) {
                 selectedBrick = touchedNode as! BrickNode
             }
@@ -114,7 +118,9 @@ class SimulatorScene: SKScene {
             positionBrick!.position = CGPoint(x: scale.size.width, y: scale.size.height)
             scale.addChild(positionBrick!)
             
+            selectedBrick.removePhysicsBody()
             brickIsSelected = true
+            trash.isHidden = false
         }
     }
     
@@ -125,6 +131,16 @@ class SimulatorScene: SKScene {
         selectBrick(location: location)
         if selectedBrick.brickPosition != -1 {
             occupiedPositions[selectedBrick.brickPosition] = false
+            bricks[selectedBrick.brickPosition] = nil
+            joints[selectedBrick.brickPosition] = nil
+            
+            if let foundBrick = bricks[8] {
+                foundBrick.removeFromParent()
+                bricks[8] = nil
+            }
+        }
+        else {
+            bricks[8] = nil
         }
     }
     
@@ -134,7 +150,6 @@ class SimulatorScene: SKScene {
                 let location = touch.location(in: self)
                 selectedBrick.position.x = location.x - scale.position.x
                 selectedBrick.position.y = location.y - scale.position.y
-                print([location.x, location.y])
                 
                 print([location.x, xScalePositions[0], xScalePositions[1], xScalePositions[2], xScalePositions[3], xScalePositions[4], xScalePositions[5], xScalePositions[6]])
                 if (location.x < xScalePositions[0]) {
@@ -197,7 +212,14 @@ class SimulatorScene: SKScene {
             else if !occupiedPositions[brickPosition] {
                 occupiedPositions[brickPosition] = true
                 selectedBrick.brickPosition = brickPosition
-                selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
+                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
+                selectedBrick.position = CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
+                selectedBrick.addPhysicsBody()
+                bricks[brickPosition] = selectedBrick
+                
+                let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
+                scene!.physicsWorld.add(fixedJoint)
+                joints[brickPosition] = fixedJoint
             }
             else {
                 selectedBrick.removeFromParent()
@@ -205,26 +227,24 @@ class SimulatorScene: SKScene {
             
             brickIsSelected = false
             trash.isHidden = true
+            print(bricks)
+            print(joints)
         }
-        
-        /*let location = touches.first?.location(in: self)
-        if (location!.x + selectedBrick.size.width / 2 > trash.position.x + 20 && location!.x + selectedBrick.size.width / 2 < trash.position.x + 100) &&
-            (location!.y - selectedBrick.size.height / 2 > trash.position.y - 60 && location!.y - selectedBrick.size.height / 2 < trash.position.y + 20)   {
-            selectedBrick.removeFromParent()
-        }
-        
-        trash.isHidden = true*/
     }
     
     func showMass(show: Bool) {
         if show {
             for brick in bricks {
-                brick.childNode(withName: "lbWeight")?.isHidden = false
+                if let foundBrick = brick {
+                    foundBrick.childNode(withName: "lbWeight")?.isHidden = false
+                }
             }
         }
         else {
             for brick in bricks {
-                brick.childNode(withName: "lbWeight")?.isHidden = true
+                if let foundBrick = brick {
+                    foundBrick.childNode(withName: "lbWeight")?.isHidden = true
+                }
             }
         }
     }

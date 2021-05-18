@@ -17,12 +17,14 @@ class BrickNode: SKSpriteNode {
         name = "brick"
         texture = SKTexture(imageNamed: String(brickWeight))
         bWeight = brickWeight
-        //physicsBody = SKPhysicsBody(texture: texture!, size: size)
-        //physicsBody?.categoryBitMask = CollisionTypes.brick.rawValue
-        //physicsBody?.collisionBitMask = CollisionTypes.scale.rawValue
-        //physicsBody?.contactTestBitMask = CollisionTypes.scale.rawValue
-        //physicsBody?.usesPreciseCollisionDetection = true
-        //physicsBody?.isDynamic = false
-        //physicsBody?.mass = CGFloat(brickWeight)
+    }
+    
+    func addPhysicsBody() {
+        physicsBody = SKPhysicsBody(texture: texture!, size: size)
+        physicsBody?.mass = CGFloat(bWeight)
+    }
+    
+    func removePhysicsBody() {
+        physicsBody = nil
     }
 }

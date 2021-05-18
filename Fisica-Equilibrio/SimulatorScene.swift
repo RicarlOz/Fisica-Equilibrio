@@ -24,7 +24,7 @@ class SimulatorScene: SKScene {
     var bricks = [BrickNode]()
     var selectedBrick = BrickNode()
     
-    let positionBrick = SKShapeNode(rectOf: CGSize(width: 120, height: 50))
+    var positionBrick : SKShapeNode?
     var xScalePositions = [CGFloat]()
     var brickPosition : Int = 0
     var xBrickPosition : CGFloat = 0
@@ -59,19 +59,20 @@ class SimulatorScene: SKScene {
         floor.physicsBody?.restitution = 0
         addChild(floor)
         
-        positionBrick.name = "positionBrick"
-        positionBrick.fillColor = UIColor(red: 116/255, green: 185/255, blue: 255/255, alpha: 0.5)
+        positionBrick = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10 , height: 50))
+        positionBrick!.name = "positionBrick"
+        positionBrick!.fillColor = UIColor(red: 116/255, green: 185/255, blue: 255/255, alpha: 0.5)
         xScalePositionsSetup()
     }
     
     func xScalePositionsSetup() {
-        xScalePositions.append(scale.position.x - (scale.size.width * 0.375))
-        xScalePositions.append(scale.position.x - (scale.size.width * 0.25))
-        xScalePositions.append(scale.position.x - (scale.size.width * 0.125))
+        xScalePositions.append(scale.position.x - (scale.size.width * 7 / 18))
+        xScalePositions.append(scale.position.x - (scale.size.width * 5 / 18))
+        xScalePositions.append(scale.position.x - (scale.size.width * 3 / 18))
         xScalePositions.append(scale.position.x)
-        xScalePositions.append(scale.position.x + (scale.size.width * 0.125))
-        xScalePositions.append(scale.position.x + (scale.size.width * 0.25))
-        xScalePositions.append(scale.position.x + (scale.size.width * 0.375))
+        xScalePositions.append(scale.position.x + (scale.size.width * 3 / 18))
+        xScalePositions.append(scale.position.x + (scale.size.width * 5 / 18))
+        xScalePositions.append(scale.position.x + (scale.size.width * 7 / 18))
     }
     
     func addBrick(brickWeight: Int, swMass: Bool) {
@@ -88,6 +89,7 @@ class SimulatorScene: SKScene {
         
         let brick = BrickNode(imageNamed: String(brickWeight))
         brick.position = CGPoint(x: 0, y: scale.size.height * 8)
+        brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
         
         brick.addChild(lbWeight)
@@ -109,8 +111,8 @@ class SimulatorScene: SKScene {
                 selectedBrick = touchedNode as! BrickNode
             }
             
-            positionBrick.position = CGPoint(x: scale.size.width, y: scale.size.height)
-            scale.addChild(positionBrick)
+            positionBrick!.position = CGPoint(x: scale.size.width, y: scale.size.height)
+            scale.addChild(positionBrick!)
             
             brickIsSelected = true
         }
@@ -134,49 +136,50 @@ class SimulatorScene: SKScene {
                 selectedBrick.position.y = location.y - scale.position.y
                 print([location.x, location.y])
                 
+                print([location.x, xScalePositions[0], xScalePositions[1], xScalePositions[2], xScalePositions[3], xScalePositions[4], xScalePositions[5], xScalePositions[6]])
                 if (location.x < xScalePositions[0]) {
                     brickPosition = 0
-                    xBrickPosition = -0.4375
+                    xBrickPosition = -(4 / 9)
                 }
                 else if (location.x < xScalePositions[1]) {
                     brickPosition = 1
-                    xBrickPosition = -0.3125
+                    xBrickPosition = -(3 / 9)
                 }
                 else if (location.x < xScalePositions[2]) {
                     brickPosition = 2
-                    xBrickPosition = -0.1875
+                    xBrickPosition = -(2 / 9)
                 }
                 else if (location.x < xScalePositions[3]) {
                     brickPosition = 3
-                    xBrickPosition = -0.0625
+                    xBrickPosition = -(1 / 9)
                 }
                 else if (location.x < xScalePositions[4]) {
                     brickPosition = 4
-                    xBrickPosition = 0.0625
+                    xBrickPosition = (1 / 9)
                 }
                 else if (location.x < xScalePositions[5]) {
                     brickPosition = 5
-                    xBrickPosition = 0.1875
+                    xBrickPosition = (2 / 9)
                 }
                 else if (location.x < xScalePositions[6]) {
                     brickPosition = 6
-                    xBrickPosition = 0.3125
+                    xBrickPosition = (3 / 9)
                 }
                 else {
                     brickPosition = 7
-                    xBrickPosition = 0.4375
+                    xBrickPosition = (4 / 9)
                 }
                 
                 if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
                     trash.fillTexture = SKTexture(imageNamed: "trashOpen")
-                    positionBrick.isHidden = true
+                    positionBrick!.isHidden = true
                 }
                 else {
                     trash.fillTexture = SKTexture(imageNamed: "trashClosed")
-                    positionBrick.isHidden = false
+                    positionBrick!.isHidden = false
                 }
                 
-                positionBrick.position.x = scale.size.width * xBrickPosition
+                positionBrick!.position.x = scale.size.width * xBrickPosition
             }
         }
     }
@@ -186,7 +189,7 @@ class SimulatorScene: SKScene {
         let location = touch.location(in: self)
         
         if brickIsSelected {
-            positionBrick.removeFromParent()
+            positionBrick!.removeFromParent()
             
             if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
                 selectedBrick.removeFromParent()

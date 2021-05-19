@@ -22,8 +22,8 @@ class SimulatorScene: SKScene {
     var brickIsSelected : Bool = false
     var positionBrick : SKShapeNode?
     var xScalePositions = [CGFloat]()
+    var xBrickPositions = [CGFloat]()
     var brickPosition : Int = 0
-    var xBrickPosition : CGFloat = 0
     var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var occupiedPositions = [false, false, false, false, false, false, false, false]
@@ -57,10 +57,10 @@ class SimulatorScene: SKScene {
         positionBrick = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10 , height: 50))
         positionBrick!.name = "positionBrick"
         positionBrick!.fillColor = UIColor(red: 116/255, green: 185/255, blue: 255/255, alpha: 0.5)
-        xScalePositionsSetup()
+        positionsSetup()
     }
     
-    func xScalePositionsSetup() {
+    func positionsSetup() {
         xScalePositions.append(scale.position.x - (scale.size.width * 7 / 18))
         xScalePositions.append(scale.position.x - (scale.size.width * 5 / 18))
         xScalePositions.append(scale.position.x - (scale.size.width * 3 / 18))
@@ -68,6 +68,16 @@ class SimulatorScene: SKScene {
         xScalePositions.append(scale.position.x + (scale.size.width * 3 / 18))
         xScalePositions.append(scale.position.x + (scale.size.width * 5 / 18))
         xScalePositions.append(scale.position.x + (scale.size.width * 7 / 18))
+        
+        xBrickPositions.append(-4 / 9)
+        xBrickPositions.append(-3 / 9)
+        xBrickPositions.append(-2 / 9)
+        xBrickPositions.append(-1 / 9)
+        xBrickPositions.append(1 / 9)
+        xBrickPositions.append(2 / 9)
+        xBrickPositions.append(3 / 9)
+        xBrickPositions.append(4 / 9)
+        
     }
     
     func addBrick(brickWeight: Int, swMass: Bool) {
@@ -145,35 +155,27 @@ class SimulatorScene: SKScene {
                 
                 if (location.x < xScalePositions[0]) {
                     brickPosition = 0
-                    xBrickPosition = -(4 / 9)
                 }
                 else if (location.x < xScalePositions[1]) {
                     brickPosition = 1
-                    xBrickPosition = -(3 / 9)
                 }
                 else if (location.x < xScalePositions[2]) {
                     brickPosition = 2
-                    xBrickPosition = -(2 / 9)
                 }
                 else if (location.x < xScalePositions[3]) {
                     brickPosition = 3
-                    xBrickPosition = -(1 / 9)
                 }
                 else if (location.x < xScalePositions[4]) {
                     brickPosition = 4
-                    xBrickPosition = (1 / 9)
                 }
                 else if (location.x < xScalePositions[5]) {
                     brickPosition = 5
-                    xBrickPosition = (2 / 9)
                 }
                 else if (location.x < xScalePositions[6]) {
                     brickPosition = 6
-                    xBrickPosition = (3 / 9)
                 }
                 else {
                     brickPosition = 7
-                    xBrickPosition = (4 / 9)
                 }
                 
                 if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
@@ -185,7 +187,7 @@ class SimulatorScene: SKScene {
                     positionBrick!.isHidden = false
                 }
                 
-                positionBrick!.position.x = scale.size.width * xBrickPosition
+                positionBrick!.position.x = scale.size.width * xBrickPositions[brickPosition]
             }
         }
     }
@@ -203,23 +205,29 @@ class SimulatorScene: SKScene {
             else if !occupiedPositions[brickPosition] {
                 occupiedPositions[brickPosition] = true
                 selectedBrick.brickPosition = brickPosition
-                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
-                selectedBrick.position = CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
+                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
+                selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
                 selectedBrick.addPhysicsBody()
                 bricks[brickPosition] = selectedBrick
                 
-                let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPosition, y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
+                let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
                 scene!.physicsWorld.add(fixedJoint)
                 joints[brickPosition] = fixedJoint
             }
             else {
-                selectedBrick.removeFromParent()
+                occupiedPositions[selectedBrick.brickPosition] = true
+                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
+                selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
+                selectedBrick.addPhysicsBody()
+                bricks[brickPosition] = selectedBrick
+                
+                let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
+                scene!.physicsWorld.add(fixedJoint)
+                joints[brickPosition] = fixedJoint
             }
             
             brickIsSelected = false
             trash.isHidden = true
-            print(bricks)
-            print(joints)
         }
         
         scaleWeight = 0
@@ -237,6 +245,7 @@ class SimulatorScene: SKScene {
         if scaleWeight == 0 {
             straightenScale()
         }
+        print(scaleWeight)
     }
     
     func showMass(show: Bool) {

@@ -14,6 +14,7 @@ class SimulatorScene: SKScene {
     
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
+    var scaleWeight = 0
     let floor = SKSpriteNode()
     var trash = SKShapeNode(circleOfRadius: 40)
     
@@ -220,6 +221,22 @@ class SimulatorScene: SKScene {
             print(bricks)
             print(joints)
         }
+        
+        scaleWeight = 0
+        for number in 0...7 {
+            if let brickFound = bricks[number] {
+                if number < 4 {
+                    scaleWeight += brickFound.bWeight * (number - 4)
+                }
+                else {
+                    scaleWeight += brickFound.bWeight * (number - 3)
+                }
+            }
+        }
+        
+        if scaleWeight == 0 {
+            straightenScale()
+        }
     }
     
     func showMass(show: Bool) {
@@ -237,5 +254,10 @@ class SimulatorScene: SKScene {
                 }
             }
         }
+    }
+    
+    func straightenScale() {
+        let rotation = SKAction.rotate(toAngle: 0, duration: 2)
+        scale.run(rotation)
     }
 }

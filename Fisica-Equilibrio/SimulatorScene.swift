@@ -8,24 +8,24 @@
 import SpriteKit
 
 class SimulatorScene: SKScene {
-    
-    var trash = SKShapeNode(circleOfRadius: 40)
 
     weak var viewController: ViewControllerSimulator?
     var background = SKSpriteNode(imageNamed: "temp-menu-simulator")
+    
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
     let floor = SKSpriteNode()
-    var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
-    var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
-    var selectedBrick = BrickNode()
+    var trash = SKShapeNode(circleOfRadius: 40)
     
+    var selectedBrick = BrickNode()
+    var brickIsSelected : Bool = false
     var positionBrick : SKShapeNode?
     var xScalePositions = [CGFloat]()
     var brickPosition : Int = 0
     var xBrickPosition : CGFloat = 0
+    var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+    var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var occupiedPositions = [false, false, false, false, false, false, false, false]
-    var brickIsSelected : Bool = false
     
     override func didMove(to view: SKView) {
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
@@ -36,14 +36,16 @@ class SimulatorScene: SKScene {
         scale.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height * 0.4)
         scale.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width, height: scale.size.height))
         scale.physicsBody?.pinned = true
-        scale.physicsBody?.mass = 100
+        scale.physicsBody?.mass = 1000
+        addChild(scale)
         
         scaleBase.size = CGSize(width: scale.size.height * 3, height: scale.size.height * 3)
         scaleBase.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height / 2 - scaleBase.size.height / 2)
-        //scaleBase.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "base"), size: scaleBase.size)
-        scaleBase.physicsBody?.isDynamic = false
-        addChild(scale)
         addChild(scaleBase)
+        
+        floor.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: (scaleBase.position.y - scaleBase.size.height / 2)), to: CGPoint(x: frame.size.width, y: (scaleBase.position.y - scaleBase.size.height / 2)))
+        floor.physicsBody?.restitution = 0
+        addChild(floor)
         
         trash.position = CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8)
         trash.fillColor = .white
@@ -51,21 +53,10 @@ class SimulatorScene: SKScene {
         trash.isHidden = true
         addChild(trash)
         
-        floor.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: (scaleBase.position.y - scaleBase.size.height / 2)), to: CGPoint(x: frame.size.width, y: (scaleBase.position.y - scaleBase.size.height / 2)))
-        floor.physicsBody?.restitution = 0
-        addChild(floor)
-        
         positionBrick = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10 , height: 50))
         positionBrick!.name = "positionBrick"
         positionBrick!.fillColor = UIColor(red: 116/255, green: 185/255, blue: 255/255, alpha: 0.5)
         xScalePositionsSetup()
-        
-        //Testing
-        let testNode = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10, height: 50))
-        testNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width / 10, height: 50))
-        testNode.position = CGPoint(x: 300, y: 30000)
-        testNode.physicsBody?.mass = 10
-        //addChild(testNode)
     }
     
     func xScalePositionsSetup() {
@@ -151,7 +142,6 @@ class SimulatorScene: SKScene {
                 selectedBrick.position.x = location.x - scale.position.x
                 selectedBrick.position.y = location.y - scale.position.y
                 
-                print([location.x, xScalePositions[0], xScalePositions[1], xScalePositions[2], xScalePositions[3], xScalePositions[4], xScalePositions[5], xScalePositions[6]])
                 if (location.x < xScalePositions[0]) {
                     brickPosition = 0
                     xBrickPosition = -(4 / 9)

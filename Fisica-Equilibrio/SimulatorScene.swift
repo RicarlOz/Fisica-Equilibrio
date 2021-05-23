@@ -14,6 +14,7 @@ class SimulatorScene: SKScene {
     
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
+    let ruler = SKSpriteNode(imageNamed: "ruler")
     var scaleWeight = 0
     let floor = SKSpriteNode()
     var trash = SKShapeNode(circleOfRadius: 40)
@@ -38,6 +39,14 @@ class SimulatorScene: SKScene {
         scale.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width, height: scale.size.height))
         scale.physicsBody?.pinned = true
         scale.physicsBody?.mass = 1000
+        
+        ruler.size.width = frame.size.width * 0.8
+        ruler.position = CGPoint(x: 0, y: -scale.size.height * 1.5)
+        ruler.isHidden = true
+        ruler.physicsBody?.pinned = true
+        
+        scale.addChild(ruler)
+        
         addChild(scale)
         
         scaleBase.size = CGSize(width: scale.size.height * 3, height: scale.size.height * 3)
@@ -97,7 +106,14 @@ class SimulatorScene: SKScene {
         brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
         
+        let blockForce = SKSpriteNode(imageNamed: "force")
+        blockForce.size = CGSize(width: brick.size.width / 2, height: brick.size.height * 2)
+        blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -brick.size.height * 1.25)
+        blockForce.run(SKAction.rotate(byAngle: .pi, duration: 0))
+        //blockForce.constraints = [SKConstraint.zRotation(SKRange(constantValue: .pi))]
+        
         brick.addChild(lbWeight)
+        brick.addChild(blockForce)
         scale.addChild(brick)
         if let foundBrick = bricks[8] {
             foundBrick.removeFromParent()
@@ -249,20 +265,15 @@ class SimulatorScene: SKScene {
     }
     
     func showMass(show: Bool) {
-        if show {
-            for brick in bricks {
-                if let foundBrick = brick {
-                    foundBrick.childNode(withName: "lbWeight")?.isHidden = false
-                }
+        for brick in bricks {
+            if let foundBrick = brick {
+                foundBrick.childNode(withName: "lbWeight")?.isHidden = !show
             }
         }
-        else {
-            for brick in bricks {
-                if let foundBrick = brick {
-                    foundBrick.childNode(withName: "lbWeight")?.isHidden = true
-                }
-            }
-        }
+    }
+    
+    func showRuler(show: Bool) {
+        ruler.isHidden = !show
     }
     
     func straightenScale() {

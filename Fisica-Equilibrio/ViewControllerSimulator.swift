@@ -84,15 +84,12 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         if showMass {
             btnMass.setImage(UIImage(named: "unchecked"), for: .normal)
             showMass = false
-            
-            currentScene!.showMass(show: showMass)
         }
         else {
             btnMass.setImage(UIImage(named: "checked"), for: .normal)
             showMass = true
-            
-            currentScene!.showMass(show: showMass)
         }
+        currentScene!.showMass(show: showMass)
     }
     
     @IBAction func CheckboxForce(_ sender: Any) {
@@ -115,6 +112,8 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
             btnRule.setImage(UIImage(named: "checked"), for: .normal)
             showRule = true
         }
+        
+        currentScene!.showRuler(show: showRule)
     }
     
     @IBAction func CheckboxLevel(_ sender: Any) {

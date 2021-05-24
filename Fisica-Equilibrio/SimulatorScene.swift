@@ -17,6 +17,7 @@ class SimulatorScene: SKScene {
     let ruler = SKSpriteNode(imageNamed: "ruler")
     var scaleWeight = 0
     let floor = SKSpriteNode()
+    let forceLookAt = SKSpriteNode()
     var trash = SKShapeNode(circleOfRadius: 40)
     
     var selectedBrick = BrickNode()
@@ -27,6 +28,7 @@ class SimulatorScene: SKScene {
     var brickPosition : Int = 0
     var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
+    var bricksArray = [BrickNode?]()
     var occupiedPositions = [false, false, false, false, false, false, false, false]
     
     override func didMove(to view: SKView) {
@@ -56,6 +58,9 @@ class SimulatorScene: SKScene {
         floor.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: (scaleBase.position.y - scaleBase.size.height / 2)), to: CGPoint(x: frame.size.width, y: (scaleBase.position.y - scaleBase.size.height / 2)))
         floor.physicsBody?.restitution = 0
         addChild(floor)
+        
+        forceLookAt.position = CGPoint(x: size.width / 2, y: -10000)
+        addChild(forceLookAt)
         
         trash.position = CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8)
         trash.fillColor = .white
@@ -89,7 +94,7 @@ class SimulatorScene: SKScene {
         
     }
     
-    func addBrick(brickWeight: Int, swMass: Bool) {
+    func addBrick(brickWeight: Int, swMass: Bool, swForce: Bool) {
         let lbWeight = SKLabelNode(fontNamed: "Questrial")
         lbWeight.text = String(brickWeight) + " Kg"
         lbWeight.fontSize = 24
@@ -107,10 +112,17 @@ class SimulatorScene: SKScene {
         brick.setup(brickWeight: brickWeight)
         
         let blockForce = SKSpriteNode(imageNamed: "force")
-        blockForce.size = CGSize(width: brick.size.width / 2, height: brick.size.height * 2)
-        blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -brick.size.height * 1.25)
-        blockForce.run(SKAction.rotate(byAngle: .pi, duration: 0))
-        //blockForce.constraints = [SKConstraint.zRotation(SKRange(constantValue: .pi))]
+        blockForce.size = CGSize(width: brick.size.width / 2, height: scaleBase.size.height)
+        blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -brick.size.height / 2)
+        //blockForce.zRotation = .pi
+        let lookAt = SKConstraint.orient(to: forceLookAt, offset: SKRange(constantValue: -CGFloat.pi / 2))
+        let lookAtLimit = SKConstraint.zRotation(SKRange(lowerLimit: -CGFloat.pi, upperLimit: CGFloat.pi))
+        blockForce.constraints = [lookAt, lookAtLimit]
+        blockForce.physicsBody?.mass = 0
+        blockForce.name = "force"
+        if !swForce {
+            blockForce.isHidden = true
+        }
         
         brick.addChild(lbWeight)
         brick.addChild(blockForce)
@@ -119,12 +131,13 @@ class SimulatorScene: SKScene {
             foundBrick.removeFromParent()
         }
         bricks[8] = brick
+        bricksArray.append(brick)
     }
     
     func selectBrick(location: CGPoint) {
         var touchedNode = self.atPoint(location)
         
-        if touchedNode is SKLabelNode && touchedNode.parent?.name == "brick" {
+        if touchedNode.parent?.name == "brick" {
             touchedNode = touchedNode.parent!
         }
         
@@ -265,7 +278,7 @@ class SimulatorScene: SKScene {
     }
     
     func showMass(show: Bool) {
-        for brick in bricks {
+        for brick in bricksArray {
             if let foundBrick = brick {
                 foundBrick.childNode(withName: "lbWeight")?.isHidden = !show
             }
@@ -274,6 +287,14 @@ class SimulatorScene: SKScene {
     
     func showRuler(show: Bool) {
         ruler.isHidden = !show
+    }
+    
+    func showForce(show: Bool) {
+        for brick in bricksArray {
+            if let foundBrick = brick {
+                foundBrick.childNode(withName: "force")?.isHidden = !show
+            }
+        }
     }
     
     func straightenScale() {

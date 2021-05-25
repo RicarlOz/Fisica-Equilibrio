@@ -63,7 +63,7 @@ class SimulatorScene: SKScene {
         addChild(scaleBase)
         
         ruler.size.width = frame.size.width * 0.8 + (scale.size.width / 10 / 10 * 2)
-        ruler.position = CGPoint(x: 0, y: -scale.size.height * 1.5)
+        ruler.position = CGPoint(x: 0, y: -scale.size.height)
         ruler.isHidden = true
         ruler.physicsBody?.pinned = true
         scale.addChild(ruler)

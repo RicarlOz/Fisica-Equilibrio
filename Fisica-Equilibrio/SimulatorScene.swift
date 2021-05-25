@@ -124,7 +124,7 @@ class SimulatorScene: SKScene {
         brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
         
-        let blockForce = SKSpriteNode(imageNamed: "force")
+        let blockForce = SKSpriteNode(imageNamed: "force-vector")
         blockForce.size.width = brick.size.width / 2
         if brickWeight <= 60 {
             blockForce.size.height = brick.size.height * 0.85

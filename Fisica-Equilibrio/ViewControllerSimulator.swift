@@ -126,6 +126,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
             btnLevel.setImage(UIImage(named: "checked"), for: .normal)
             showLevel = true
         }
+        currentScene?.showLevel(show: showLevel)
     }
     
     @IBAction func exit(_ sender: UIButton) {

@@ -15,6 +15,8 @@ class SimulatorScene: SKScene {
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
     let ruler = SKSpriteNode(imageNamed: "ruler")
+    let levelLeft = SKSpriteNode(imageNamed: "bar-lvl")
+    let levelRight = SKSpriteNode(imageNamed: "bar-lvl")
     var scaleWeight = 0
     let floor = SKSpriteNode()
     let forceLookAt = SKSpriteNode()
@@ -41,19 +43,30 @@ class SimulatorScene: SKScene {
         scale.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: scale.size.width, height: scale.size.height))
         scale.physicsBody?.pinned = true
         scale.physicsBody?.mass = 1000
-        
-        ruler.size.width = frame.size.width * 0.8
-        ruler.position = CGPoint(x: 0, y: -scale.size.height * 1.5)
-        ruler.isHidden = true
-        ruler.physicsBody?.pinned = true
-        
-        scale.addChild(ruler)
-        
         addChild(scale)
+        
+        levelLeft.size.height = scale.size.height * 2
+        levelLeft.size.width = levelLeft.size.height
+        levelLeft.position = CGPoint(x: scale.position.x - (levelLeft.size.width / 2 + scale.size.width / 2), y: scale.position.y)
+        levelLeft.isHidden = true
+        addChild(levelLeft)
+        
+        levelRight.xScale = levelRight.xScale * -1
+        levelRight.size.height = scale.size.height * 2
+        levelRight.size.width = levelRight.size.height
+        levelRight.position = CGPoint(x: scale.position.x + (levelRight.size.width / 2 + scale.size.width / 2), y: scale.position.y)
+        levelRight.isHidden = true
+        addChild(levelRight)
         
         scaleBase.size = CGSize(width: scale.size.height * 3, height: scale.size.height * 3)
         scaleBase.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height / 2 - scaleBase.size.height / 2)
         addChild(scaleBase)
+        
+        ruler.size.width = frame.size.width * 0.8 + (scale.size.width / 10 / 10 * 2)
+        ruler.position = CGPoint(x: 0, y: -scale.size.height * 1.5)
+        ruler.isHidden = true
+        ruler.physicsBody?.pinned = true
+        scale.addChild(ruler)
         
         floor.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: (scaleBase.position.y - scaleBase.size.height / 2)), to: CGPoint(x: frame.size.width, y: (scaleBase.position.y - scaleBase.size.height / 2)))
         floor.physicsBody?.restitution = 0
@@ -62,7 +75,7 @@ class SimulatorScene: SKScene {
         forceLookAt.position = CGPoint(x: size.width / 2, y: -10000)
         addChild(forceLookAt)
         
-        trash.position = CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8)
+        trash.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height * 2)
         trash.fillColor = .white
         trash.fillTexture = SKTexture(imageNamed: "trashClosed")
         trash.isHidden = true
@@ -113,7 +126,7 @@ class SimulatorScene: SKScene {
         
         let blockForce = SKSpriteNode(imageNamed: "force")
         blockForce.size = CGSize(width: brick.size.width / 2, height: scaleBase.size.height)
-        blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -brick.size.height / 2)
+        blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -(brick.size.height / 2 + blockForce.size.height / 2))
         //blockForce.zRotation = .pi
         let lookAt = SKConstraint.orient(to: forceLookAt, offset: SKRange(constantValue: -CGFloat.pi / 2))
         let lookAtLimit = SKConstraint.zRotation(SKRange(lowerLimit: -CGFloat.pi, upperLimit: CGFloat.pi))
@@ -243,7 +256,7 @@ class SimulatorScene: SKScene {
                 scene!.physicsWorld.add(fixedJoint)
                 joints[brickPosition] = fixedJoint
             }
-            else {
+            else if selectedBrick.brickPosition != -1 {
                 occupiedPositions[selectedBrick.brickPosition] = true
                 //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
                 selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
@@ -253,6 +266,9 @@ class SimulatorScene: SKScene {
                 let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
                 scene!.physicsWorld.add(fixedJoint)
                 joints[brickPosition] = fixedJoint
+            }
+            else {
+                selectedBrick.removeFromParent()
             }
             
             brickIsSelected = false
@@ -273,6 +289,12 @@ class SimulatorScene: SKScene {
         
         if scaleWeight == 0 {
             straightenScale()
+            levelLeft.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+            levelRight.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+        }
+        else {
+            levelLeft.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
+            levelRight.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
         }
         print(scaleWeight)
     }
@@ -295,6 +317,11 @@ class SimulatorScene: SKScene {
                 foundBrick.childNode(withName: "force")?.isHidden = !show
             }
         }
+    }
+    
+    func showLevel(show: Bool) {
+        levelRight.isHidden = !show
+        levelLeft.isHidden = !show
     }
     
     func straightenScale() {

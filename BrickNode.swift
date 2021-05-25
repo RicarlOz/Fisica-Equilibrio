@@ -15,7 +15,7 @@ class BrickNode: SKSpriteNode {
 
     func setup(brickWeight: Int) {
         name = "brick"
-        texture = SKTexture(imageNamed: String(brickWeight))
+        //texture = SKTexture(imageNamed: String(brickWeight))
         bWeight = brickWeight
     }
     

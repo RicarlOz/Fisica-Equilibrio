@@ -125,9 +125,15 @@ class SimulatorScene: SKScene {
         brick.setup(brickWeight: brickWeight)
         
         let blockForce = SKSpriteNode(imageNamed: "force")
-        blockForce.size = CGSize(width: brick.size.width / 2, height: scaleBase.size.height)
+        blockForce.size.width = brick.size.width / 2
+        if brickWeight <= 60 {
+            blockForce.size.height = brick.size.height * 0.85
+        }
+        else {
+            blockForce.size.height = brick.size.height / 1.25
+        }
+        
         blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -(brick.size.height / 2 + blockForce.size.height / 2))
-        //blockForce.zRotation = .pi
         let lookAt = SKConstraint.orient(to: forceLookAt, offset: SKRange(constantValue: -CGFloat.pi / 2))
         let lookAtLimit = SKConstraint.zRotation(SKRange(lowerLimit: -CGFloat.pi, upperLimit: CGFloat.pi))
         blockForce.constraints = [lookAt, lookAtLimit]

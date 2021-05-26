@@ -35,7 +35,6 @@ class SimulatorScene: SKScene {
     var brickPosition : Int = 0
     var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
-    var bricksArray = [BrickNode?]()
     var occupiedPositions = [false, false, false, false, false, false, false, false]
     var torques: [Double] = [0, 0, 0, 0, 0, 0, 0, 0]
     
@@ -187,12 +186,7 @@ class SimulatorScene: SKScene {
         
         let blockForce = SKSpriteNode(imageNamed: "force-vector")
         blockForce.size.width = brick.size.width / 2
-        if brickWeight <= 60 {
-            blockForce.size.height = brick.size.height * 0.85
-        }
-        else {
-            blockForce.size.height = brick.size.height / 1.25
-        }
+        blockForce.size.height = 25 + CGFloat(brick.bWeight) * 2
         
         blockForce.position = CGPoint(x: brick.size.width / 2 - blockForce.size.width, y: -(brick.size.height / 2 + blockForce.size.height / 2))
         let lookAt = SKConstraint.orient(to: forceLookAt, offset: SKRange(constantValue: -CGFloat.pi / 2))
@@ -213,7 +207,6 @@ class SimulatorScene: SKScene {
             foundBrick.removeFromParent()
         }
         bricks[8] = brick
-        bricksArray.append(brick)
     }
     
     func selectBrick(location: CGPoint) {

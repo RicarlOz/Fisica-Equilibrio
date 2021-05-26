@@ -123,8 +123,8 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "addBrick(brickWeight:swMass:swForce:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -139,9 +139,9 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "touchesBegan(_:with:)"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "selectBrick(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -155,8 +155,8 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "addBrick(brickWeight:swMass:swForce:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -171,9 +171,9 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "touchesBegan(_:with:)"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "selectBrick(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -187,8 +187,8 @@
             filePath = "Fisica-Equilibrio/SimulatorScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "playSimulation()"
             landmarkType = "7">
          </BreakpointContent>

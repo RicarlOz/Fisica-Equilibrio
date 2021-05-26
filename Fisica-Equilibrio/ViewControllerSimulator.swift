@@ -155,7 +155,6 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     
     func updateTorque(torques: [Double]) {
         self.torques = torques
-        print(torques)
         tvLeft.reloadData()
         tvRight.reloadData()
     }

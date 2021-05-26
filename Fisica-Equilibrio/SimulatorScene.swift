@@ -100,6 +100,7 @@ class SimulatorScene: SKScene {
     }
     
     func positionsSetup() {
+        // Define positions where mouse hover defines a position of the scale
         xScalePositions.append(scale.position.x - (scale.size.width * 7 / 18))
         xScalePositions.append(scale.position.x - (scale.size.width * 5 / 18))
         xScalePositions.append(scale.position.x - (scale.size.width * 3 / 18))
@@ -108,6 +109,7 @@ class SimulatorScene: SKScene {
         xScalePositions.append(scale.position.x + (scale.size.width * 5 / 18))
         xScalePositions.append(scale.position.x + (scale.size.width * 7 / 18))
         
+        // Define positions where bricks will be positioned in scale
         xBrickPositions.append(-4 / 9)
         xBrickPositions.append(-3 / 9)
         xBrickPositions.append(-2 / 9)
@@ -119,9 +121,19 @@ class SimulatorScene: SKScene {
     }
     
     func playSimulation() {
+        if scaleWeight == 0 {
+            levelLeft.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+            levelRight.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+        }
+        else {
+            levelLeft.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
+            levelRight.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
+        }
+
         if isSimulationPlaying {
             lock.texture = SKTexture(imageNamed: "unlocked")
             
+            // Add mass to all bricks
             for number in 0...7 {
                 if let brickFound = bricks[number] {
                     brickFound.removePhysicsBody()
@@ -135,8 +147,12 @@ class SimulatorScene: SKScene {
             }
         }
         else {
+            levelLeft.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+            levelRight.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
+            
             lock.texture = SKTexture(imageNamed: "locked")
             
+            // Remove mass from all bricks, then straighten scale
             for number in 0...7 {
                 if let brickFound = bricks[number] {
                     brickFound.removePhysicsBody()
@@ -191,6 +207,8 @@ class SimulatorScene: SKScene {
         brick.addChild(lbWeight)
         brick.addChild(blockForce)
         scale.addChild(brick)
+        
+        // If a brick was already floating in the screen, remove it and replace with new one
         if let foundBrick = bricks[8] {
             foundBrick.removeFromParent()
         }
@@ -228,167 +246,171 @@ class SimulatorScene: SKScene {
         let location = touch.location(in: self)
         
         selectBrick(location: location)
-        if selectedBrick.brickPosition != -1 {
-            occupiedPositions[selectedBrick.brickPosition] = false
-            bricks[selectedBrick.brickPosition] = nil
-            joints[selectedBrick.brickPosition] = nil
-            
-            if let foundBrick = bricks[8] {
-                foundBrick.removeFromParent()
+        if brickIsSelected {
+            if selectedBrick.brickPosition != -1 {
+                occupiedPositions[selectedBrick.brickPosition] = false
+                bricks[selectedBrick.brickPosition] = nil
+                joints[selectedBrick.brickPosition] = nil
+                
+                if let foundBrick = bricks[8] {
+                    foundBrick.removeFromParent()
+                    bricks[8] = nil
+                }
+            }
+            else {
                 bricks[8] = nil
             }
-        }
-        else {
-            bricks[8] = nil
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if brickIsSelected {
-            for touch in touches {
-                let location = touch.location(in: self)
-                selectedBrick.position.x = location.x - scale.position.x
-                selectedBrick.position.y = location.y - scale.position.y
-                
-                if (location.x < xScalePositions[0]) {
-                    brickPosition = 0
-                }
-                else if (location.x < xScalePositions[1]) {
-                    brickPosition = 1
-                }
-                else if (location.x < xScalePositions[2]) {
-                    brickPosition = 2
-                }
-                else if (location.x < xScalePositions[3]) {
-                    brickPosition = 3
-                }
-                else if (location.x < xScalePositions[4]) {
-                    brickPosition = 4
-                }
-                else if (location.x < xScalePositions[5]) {
-                    brickPosition = 5
-                }
-                else if (location.x < xScalePositions[6]) {
-                    brickPosition = 6
-                }
-                else {
-                    brickPosition = 7
-                }
-                
-                if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
-                    trash.fillTexture = SKTexture(imageNamed: "trashOpen")
-                    positionBrick!.isHidden = true
-                }
-                else {
-                    trash.fillTexture = SKTexture(imageNamed: "trashClosed")
-                    positionBrick!.isHidden = false
-                }
-                
-                positionBrick!.position.x = scale.size.width * xBrickPositions[brickPosition]
+        if !brickIsSelected {
+            return
+        }
+        
+        for touch in touches {
+            let location = touch.location(in: self)
+            selectedBrick.position.x = location.x - scale.position.x
+            selectedBrick.position.y = location.y - scale.position.y
+            
+            if (location.x < xScalePositions[0]) {
+                brickPosition = 0
             }
+            else if (location.x < xScalePositions[1]) {
+                brickPosition = 1
+            }
+            else if (location.x < xScalePositions[2]) {
+                brickPosition = 2
+            }
+            else if (location.x < xScalePositions[3]) {
+                brickPosition = 3
+            }
+            else if (location.x < xScalePositions[4]) {
+                brickPosition = 4
+            }
+            else if (location.x < xScalePositions[5]) {
+                brickPosition = 5
+            }
+            else if (location.x < xScalePositions[6]) {
+                brickPosition = 6
+            }
+            else {
+                brickPosition = 7
+            }
+            
+            if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
+                trash.fillTexture = SKTexture(imageNamed: "trashOpen")
+                positionBrick!.isHidden = true
+            }
+            else {
+                trash.fillTexture = SKTexture(imageNamed: "trashClosed")
+                positionBrick!.isHidden = false
+            }
+            
+            positionBrick!.position.x = scale.size.width * xBrickPositions[brickPosition]
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isSimulationPlaying {
+        if !brickIsSelected {
             return
         }
         
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        if brickIsSelected {
-            positionBrick!.removeFromParent()
+        positionBrick!.removeFromParent()
             
-            if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
-                if selectedBrick.brickPosition != -1 {
-                    torques[selectedBrick.brickPosition] = 0
-                    del.updateTorque(torques: torques)
-                }
+        if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
+            if selectedBrick.brickPosition != -1 {
+                torques[selectedBrick.brickPosition] = 0
+                del.updateTorque(torques: torques)
+            }
+            selectedBrick.removeFromParent()
+        }
+        // Place brick on the bar if position is free
+        else if !occupiedPositions[brickPosition] {
+            if selectedBrick.brickPosition != -1 {
+                torques[selectedBrick.brickPosition] = 0
+                del.updateTorque(torques: torques)
+            }
+            
+            occupiedPositions[brickPosition] = true
+            selectedBrick.brickPosition = brickPosition
+            selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
+            selectedBrick.addPhysicsBody(withMass: false)
+            bricks[brickPosition] = selectedBrick
+            
+            let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
+            scene!.physicsWorld.add(fixedJoint)
+            joints[brickPosition] = fixedJoint
+            
+            // Update torque
+            if selectedBrick.brickPosition == 0 || selectedBrick.brickPosition == 7 {
+                torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight)
+                del.updateTorque(torques: torques)
+            }
+            else if selectedBrick.brickPosition == 1 || selectedBrick.brickPosition == 6 {
+                torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.75
+                del.updateTorque(torques: torques)
+            }
+            else if selectedBrick.brickPosition == 2 || selectedBrick.brickPosition == 5 {
+                torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.5
+                del.updateTorque(torques: torques)
+            }
+            else {
+                torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.25
+                del.updateTorque(torques: torques)
+            }
+        }
+        // Return brick to its original position if position was occupied
+        else {
+            if selectedBrick.brickPosition == -1 {
                 selectedBrick.removeFromParent()
             }
-            // Place block on the bar
-            else if !occupiedPositions[brickPosition] {
-                if selectedBrick.brickPosition != -1 {
-                    torques[selectedBrick.brickPosition] = 0
-                    del.updateTorque(torques: torques)
-                }
-                
-                occupiedPositions[brickPosition] = true
-                selectedBrick.brickPosition = brickPosition
-                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
-                selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
-                selectedBrick.addPhysicsBody(withMass: false)
-                bricks[brickPosition] = selectedBrick
-                
-                let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
-                scene!.physicsWorld.add(fixedJoint)
-                joints[brickPosition] = fixedJoint
-                
-                // Update torque
-                if selectedBrick.brickPosition == 0 || selectedBrick.brickPosition == 7 {
-                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight)
-                    del.updateTorque(torques: torques)
-                }
-                else if selectedBrick.brickPosition == 1 || selectedBrick.brickPosition == 6 {
-                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.75
-                    del.updateTorque(torques: torques)
-                }
-                else if selectedBrick.brickPosition == 2 || selectedBrick.brickPosition == 5 {
-                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.5
-                    del.updateTorque(torques: torques)
-                }
-                else {
-                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.25
-                    del.updateTorque(torques: torques)
-                }
-            }
-            // Floating Block
-            else if selectedBrick.brickPosition != -1 {
+            else {
                 occupiedPositions[selectedBrick.brickPosition] = true
-                //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
                 selectedBrick.position = CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2))
                 selectedBrick.addPhysicsBody(withMass: false)
-                bricks[brickPosition] = selectedBrick
+                bricks[selectedBrick.brickPosition] = selectedBrick
                 
                 let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
                 scene!.physicsWorld.add(fixedJoint)
-                joints[brickPosition] = fixedJoint
+                joints[selectedBrick.brickPosition] = fixedJoint
             }
-            
-            brickIsSelected = false
-            trash.isHidden = true
         }
+        
+        brickIsSelected = false
+        trash.isHidden = true
         
         scaleWeight = 0
         for number in 0...7 {
             if let brickFound = bricks[number] {
                 if number < 4 {
-                    scaleWeight += brickFound.bWeight * (number - 4)
+                    scaleWeight += brickFound.bWeight * (number - 4) / 4
                 }
                 else {
-                    scaleWeight += brickFound.bWeight * (number - 3)
+                    scaleWeight += brickFound.bWeight * (number - 3) / 4
                 }
             }
         }
         
-        if scaleWeight == 0 {
-            straightenScale()
-            levelLeft.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
-            levelRight.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
-        }
-        else {
-            levelLeft.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
-            levelRight.run(SKAction.fadeAlpha(to: 0.3, duration: 0.5))
-        }
         print(scaleWeight)
+        print(occupiedPositions)
+        for brick in bricks {
+            print(brick)
+        }
+        print("---")
+        for joint in joints {
+            print(joint)
+        }
     }
     
     func showMass(show: Bool) {
-        for brick in bricksArray {
-            if let foundBrick = brick {
-                foundBrick.childNode(withName: "lbWeight")?.isHidden = !show
-            }
+        print("---")
+        for brick in bricks {
+            print(brick)
+            brick?.childNode(withName: "lbWeight")?.isHidden = !show
         }
     }
     
@@ -397,10 +419,10 @@ class SimulatorScene: SKScene {
     }
     
     func showForce(show: Bool) {
-        for brick in bricksArray {
-            if let foundBrick = brick {
-                foundBrick.childNode(withName: "force")?.isHidden = !show
-            }
+        print("---")
+        for brick in bricks {
+            print(brick)
+            brick?.childNode(withName: "force")?.isHidden = !show
         }
     }
     

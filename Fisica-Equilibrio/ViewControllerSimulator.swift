@@ -77,16 +77,22 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
         
     }
 
-    @IBAction func StartSimulation(_ sender: Any) {
+    @IBAction func StartSimulation(_ sender: UIButton) {
         
         if isStarted {
+            sender.setTitle("Iniciar Simulación", for: .normal)
+            btnItems.isHidden = false
             //imgLock.image = UIImage(named: "locked")
             isStarted = false
         }
         else {
+            sender.setTitle("Detener Simulación", for: .normal)
+            btnItems.isHidden = true
             //imgLock.image = UIImage(named: "unlocked")
             isStarted = true
         }
+        currentScene!.isSimulationPlaying = isStarted
+        currentScene!.playSimulation()
     }
     
     @IBAction func CheckboxMass(_ sender: Any) {

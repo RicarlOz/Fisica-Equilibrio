@@ -19,9 +19,14 @@ class BrickNode: SKSpriteNode {
         bWeight = brickWeight
     }
     
-    func addPhysicsBody() {
+    func addPhysicsBody(withMass: Bool) {
         physicsBody = SKPhysicsBody(texture: texture!, size: size)
-        physicsBody?.mass = CGFloat(bWeight)
+        if withMass {
+            physicsBody?.mass = CGFloat(bWeight)
+        }
+        else {
+            physicsBody?.mass = 0
+        }
     }
     
     func removePhysicsBody() {

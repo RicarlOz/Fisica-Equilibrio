@@ -141,7 +141,7 @@ class SimulatorScene: SKScene {
                     scene!.physicsWorld.remove(joints[brickFound.brickPosition]!)
                     let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: brickFound.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickFound.brickPosition], y: (scale.size.height / 2) + (brickFound.size.height / 2)))
                     scene!.physicsWorld.add(fixedJoint)
-                    joints[brickPosition] = fixedJoint
+                    joints[brickFound.brickPosition] = fixedJoint
                 }
             }
         }
@@ -160,10 +160,14 @@ class SimulatorScene: SKScene {
                     scene!.physicsWorld.remove(joints[brickFound.brickPosition]!)
                     let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: brickFound.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickFound.brickPosition], y: (scale.size.height / 2) + (brickFound.size.height / 2)))
                     scene!.physicsWorld.add(fixedJoint)
-                    joints[brickPosition] = fixedJoint
+                    joints[brickFound.brickPosition] = fixedJoint
                 }
             }
             straightenScale()
+        }
+        print("---")
+        for joint in joints {
+            print(joint?.bodyA)
         }
     }
     
@@ -389,20 +393,20 @@ class SimulatorScene: SKScene {
         }
         
         print(scaleWeight)
-        print(occupiedPositions)
+        /*print(occupiedPositions)
         for brick in bricks {
             print(brick)
         }
         print("---")
         for joint in joints {
             print(joint)
-        }
+        }*/
     }
     
     func showMass(show: Bool) {
-        print("---")
+        //print("---")
         for brick in bricks {
-            print(brick)
+            //print(brick)
             brick?.childNode(withName: "lbWeight")?.isHidden = !show
         }
     }
@@ -412,9 +416,9 @@ class SimulatorScene: SKScene {
     }
     
     func showForce(show: Bool) {
-        print("---")
+        //print("---")
         for brick in bricks {
-            print(brick)
+            //print(brick)
             brick?.childNode(withName: "force")?.isHidden = !show
         }
     }

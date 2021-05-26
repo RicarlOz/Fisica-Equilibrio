@@ -7,6 +7,9 @@
 
 import SpriteKit
 
+protocol updateTorqueProtocol {
+    func updateTorque(torques: [Double])
+}
 class SimulatorScene: SKScene {
 
     weak var viewController: ViewControllerSimulator?
@@ -32,6 +35,9 @@ class SimulatorScene: SKScene {
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var bricksArray = [BrickNode?]()
     var occupiedPositions = [false, false, false, false, false, false, false, false]
+    var torques: [Double] = [0, 0, 0, 0, 0, 0, 0, 0]
+    
+    var del: updateTorqueProtocol!
     
     override func didMove(to view: SKView) {
         background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
@@ -248,9 +254,19 @@ class SimulatorScene: SKScene {
             positionBrick!.removeFromParent()
             
             if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
+                if selectedBrick.brickPosition != -1 {
+                    torques[selectedBrick.brickPosition] = 0
+                    del.updateTorque(torques: torques)
+                }
                 selectedBrick.removeFromParent()
             }
+            // Place block on the bar
             else if !occupiedPositions[brickPosition] {
+                if selectedBrick.brickPosition != -1 {
+                    torques[selectedBrick.brickPosition] = 0
+                    del.updateTorque(torques: torques)
+                }
+                
                 occupiedPositions[brickPosition] = true
                 selectedBrick.brickPosition = brickPosition
                 //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
@@ -261,7 +277,26 @@ class SimulatorScene: SKScene {
                 let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
                 scene!.physicsWorld.add(fixedJoint)
                 joints[brickPosition] = fixedJoint
+                
+                // Update torque
+                if selectedBrick.brickPosition == 0 || selectedBrick.brickPosition == 7 {
+                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight)
+                    del.updateTorque(torques: torques)
+                }
+                else if selectedBrick.brickPosition == 1 || selectedBrick.brickPosition == 6 {
+                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.75
+                    del.updateTorque(torques: torques)
+                }
+                else if selectedBrick.brickPosition == 2 || selectedBrick.brickPosition == 5 {
+                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.5
+                    del.updateTorque(torques: torques)
+                }
+                else {
+                    torques[selectedBrick.brickPosition] = Double(selectedBrick.bWeight) * 0.25
+                    del.updateTorque(torques: torques)
+                }
             }
+            // Floating Block
             else if selectedBrick.brickPosition != -1 {
                 occupiedPositions[selectedBrick.brickPosition] = true
                 //selectedBrick.run(SKAction.move(to: CGPoint(x: scale.size.width * xBrickPositions[brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)), duration: 0.15))
@@ -272,9 +307,6 @@ class SimulatorScene: SKScene {
                 let fixedJoint = SKPhysicsJointFixed.joint(withBodyA: selectedBrick.physicsBody!, bodyB: scale.physicsBody!, anchor: CGPoint(x: scale.size.width * xBrickPositions[selectedBrick.brickPosition], y: (scale.size.height / 2) + (selectedBrick.size.height / 2)))
                 scene!.physicsWorld.add(fixedJoint)
                 joints[brickPosition] = fixedJoint
-            }
-            else {
-                selectedBrick.removeFromParent()
             }
             
             brickIsSelected = false

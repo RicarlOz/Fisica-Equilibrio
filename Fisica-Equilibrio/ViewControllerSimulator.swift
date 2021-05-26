@@ -9,18 +9,20 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class ViewControllerSimulator: UIViewController, AddBrickProtocol {
+class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueProtocol {
     
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var btnItems: UIButton!
     @IBOutlet weak var btnExit: UIButton!
-    @IBOutlet weak var lbTorque: UILabel!
+    @IBOutlet weak var vTorque: UIView!
     @IBOutlet weak var vTools: UIView!
     @IBOutlet weak var imgLock: UIImageView!
     @IBOutlet weak var btnMass: UIButton!
     @IBOutlet weak var btnForce: UIButton!
     @IBOutlet weak var btnRule: UIButton!
     @IBOutlet weak var btnLevel: UIButton!
+    @IBOutlet weak var tvLeft: UITableView!
+    @IBOutlet weak var tvRight: UITableView!
     
     var currentScene: SimulatorScene?
     var isStarted: Bool = false
@@ -28,6 +30,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
     var showForce: Bool = false
     var showRule: Bool = false
     var showLevel: Bool = false
+    var torques: [Double] = [0, 0, 0, 0, 0, 0, 0, 0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +45,8 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
             }
         }
         
+        currentScene?.del = self
+        
         //view.addBackground(imageName: "temp-menu-simulator")
 
         btnStart.layer.cornerRadius = 9
@@ -53,9 +58,14 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         btnExit.layer.cornerRadius = 9
         btnExit.layer.borderWidth = 3
         btnExit.layer.borderColor = UIColor.black.cgColor
-        lbTorque.layer.cornerRadius = 9
-        lbTorque.layer.masksToBounds = true
+        vTorque.layer.cornerRadius = 9
+        vTorque.layer.masksToBounds = true
         vTools.layer.cornerRadius = 9
+        
+        tvLeft.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        tvLeft.separatorInset = UIEdgeInsets.zero
+        tvRight.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        tvRight.separatorInset = UIEdgeInsets.zero
     
     }
     
@@ -137,6 +147,13 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         currentScene!.addBrick(brickWeight: brickWeight, swMass: showMass, swForce: showForce)
     }
     
+    func updateTorque(torques: [Double]) {
+        self.torques = torques
+        print(torques)
+        tvLeft.reloadData()
+        tvRight.reloadData()
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -144,4 +161,47 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol {
         itemsView?.delegate = self
     }
 
+}
+
+extension ViewControllerSimulator: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        
+        if tableView == tvLeft {
+            cell = tableView.dequeueReusableCell(withIdentifier: "torqueLeft", for: indexPath)
+            
+            if indexPath.row == 0 {
+                cell.textLabel!.text = "Izquierda:"
+            }
+            else {
+                cell.textLabel!.text = "P" + String(indexPath.row) + ": " + String(torques[indexPath.row - 1])
+            }
+        }
+        if tableView == tvRight {
+            cell = tableView.dequeueReusableCell(withIdentifier: "torqueRight", for: indexPath)
+            
+            if indexPath.row == 0 {
+                cell.textLabel!.text = "Derecha:"
+            }
+            else {
+                cell.textLabel!.text = "P" + String(indexPath.row) + ": " + String(torques[8 - indexPath.row])
+            }
+        }
+        
+        cell.textLabel!.font = UIFont(name: "Righteous", size: 13)
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.layoutMargins = UIEdgeInsets.zero
+        cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 18
+    }
 }

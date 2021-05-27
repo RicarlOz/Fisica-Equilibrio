@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueProtocol {
     
@@ -25,6 +26,8 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     @IBOutlet weak var tvRight: UITableView!
     
     var currentScene: SimulatorScene?
+    var player: AVAudioPlayer?
+    var sound: Bool!
     var isStarted: Bool = false
     var showMass: Bool = false
     var showForce: Bool = false
@@ -74,7 +77,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     }
     
     @IBAction func closeItems(segue: UIStoryboardSegue) {
-        
+        playSound(sound: "button")
     }
 
     @IBAction func StartSimulation(_ sender: UIButton) {
@@ -91,6 +94,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
             //imgLock.image = UIImage(named: "unlocked")
             isStarted = true
         }
+        playSound(sound: "button")
         currentScene!.isSimulationPlaying = isStarted
         currentScene!.playSimulation()
     }
@@ -105,6 +109,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
             btnMass.setImage(UIImage(named: "checked"), for: .normal)
             showMass = true
         }
+        playSound(sound: "checkbox")
         currentScene!.showMass(show: showMass)
     }
     
@@ -117,6 +122,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
             btnForce.setImage(UIImage(named: "checked"), for: .normal)
             showForce = true
         }
+        playSound(sound: "checkbox")
         currentScene?.showForce(show: showForce)
     }
     
@@ -129,7 +135,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
             btnRule.setImage(UIImage(named: "checked"), for: .normal)
             showRule = true
         }
-        
+        playSound(sound: "checkbox")
         currentScene!.showRuler(show: showRule)
     }
     
@@ -142,10 +148,12 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
             btnLevel.setImage(UIImage(named: "checked"), for: .normal)
             showLevel = true
         }
+        playSound(sound: "checkbox")
         currentScene?.showLevel(show: showLevel)
     }
     
     @IBAction func exit(_ sender: UIButton) {
+        playSound(sound: "button")
         dismiss(animated: true, completion: nil)
     }
     
@@ -154,6 +162,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     }
     
     func updateTorque(torques: [Double]) {
+        playSound(sound: "place")
         self.torques = torques
         tvLeft.reloadData()
         tvRight.reloadData()
@@ -162,10 +171,28 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        playSound(sound: "button")
+        
         let itemsView = segue.destination as? ViewControllerItems
+        
+        itemsView?.sound = sound
+        
         itemsView?.delegate = self
     }
-
+    
+    //funcion para reproducir sonido
+    func playSound(sound: String) {
+        let pathToSound = Bundle.main.path(forResource: sound, ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            if self.sound {
+                player?.play()
+            }
+        } catch {
+            print("hubo un error con el sonido: " + sound)
+        }
+    }
 }
 
 extension ViewControllerSimulator: UITableViewDelegate, UITableViewDataSource {

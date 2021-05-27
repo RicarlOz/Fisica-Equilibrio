@@ -25,6 +25,11 @@
 		6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2A545262FD325007525E5 /* QuizViewController.swift */; };
 		6FFFAABF2638AC5A00DAB729 /* SimulatorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */; };
 		6FFFAAE82638D41B00DAB729 /* SimulatorScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */; };
+		F738ECFB265F74CD0060C0B5 /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F738ECF6265F74CC0060C0B5 /* incorrect.mp3 */; };
+		F738ECFC265F74CD0060C0B5 /* place.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F738ECF7265F74CC0060C0B5 /* place.mp3 */; };
+		F738ECFD265F74CD0060C0B5 /* checkbox.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F738ECF8265F74CD0060C0B5 /* checkbox.mp3 */; };
+		F738ECFE265F74CD0060C0B5 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F738ECF9265F74CD0060C0B5 /* correct.mp3 */; };
+		F738ECFF265F74CD0060C0B5 /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F738ECFA265F74CD0060C0B5 /* button.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		6FE2A545262FD325007525E5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		6FFFAABE2638AC5A00DAB729 /* SimulatorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorScene.swift; sourceTree = "<group>"; };
 		6FFFAAE72638D41B00DAB729 /* SimulatorScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SimulatorScene.sks; sourceTree = "<group>"; };
+		F738ECF6265F74CC0060C0B5 /* incorrect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect.mp3; sourceTree = "<group>"; };
+		F738ECF7265F74CC0060C0B5 /* place.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = place.mp3; sourceTree = "<group>"; };
+		F738ECF8265F74CD0060C0B5 /* checkbox.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = checkbox.mp3; sourceTree = "<group>"; };
+		F738ECF9265F74CD0060C0B5 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
+		F738ECFA265F74CD0060C0B5 /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 		534D00E6262892B700AAB40A /* Fisica-Equilibrio */ = {
 			isa = PBXGroup;
 			children = (
+				F738ECF5265F744F0060C0B5 /* Sound */,
 				534D00E7262892B700AAB40A /* AppDelegate.swift */,
 				534D00E9262892B700AAB40A /* SceneDelegate.swift */,
 				534D00EB262892B700AAB40A /* ViewController.swift */,
@@ -101,6 +112,18 @@
 				534D00F5262892BA00AAB40A /* Info.plist */,
 			);
 			path = "Fisica-Equilibrio";
+			sourceTree = "<group>";
+		};
+		F738ECF5265F744F0060C0B5 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				F738ECFA265F74CD0060C0B5 /* button.mp3 */,
+				F738ECF8265F74CD0060C0B5 /* checkbox.mp3 */,
+				F738ECF9265F74CD0060C0B5 /* correct.mp3 */,
+				F738ECF6265F74CC0060C0B5 /* incorrect.mp3 */,
+				F738ECF7265F74CC0060C0B5 /* place.mp3 */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +187,13 @@
 				6FFFAAE82638D41B00DAB729 /* SimulatorScene.sks in Resources */,
 				534D00F1262892BA00AAB40A /* Assets.xcassets in Resources */,
 				5304F852262F46DC00690EB4 /* Righteous-Regular.ttf in Resources */,
+				F738ECFF265F74CD0060C0B5 /* button.mp3 in Resources */,
+				F738ECFB265F74CD0060C0B5 /* incorrect.mp3 in Resources */,
+				F738ECFD265F74CD0060C0B5 /* checkbox.mp3 in Resources */,
+				F738ECFC265F74CD0060C0B5 /* place.mp3 in Resources */,
 				53879CAD265064A8007C8B93 /* QuizScene.sks in Resources */,
 				5304F851262F46DC00690EB4 /* Questrial-Regular.ttf in Resources */,
+				F738ECFE265F74CD0060C0B5 /* correct.mp3 in Resources */,
 				534D00EF262892B700AAB40A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

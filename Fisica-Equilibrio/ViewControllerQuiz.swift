@@ -8,19 +8,22 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
-class ViewControllerQuiz: UIViewController {
+class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
+    
     
     @IBOutlet weak var btnCheck: UIButton!
     @IBOutlet weak var btnHelp: UIButton!
     @IBOutlet weak var btnExit: UIButton!
-    //@IBOutlet weak var imgLock: UIImageView!
     @IBOutlet weak var btnMass: UIButton!
     @IBOutlet weak var btnRule: UIButton!
     @IBOutlet weak var lbResult: UILabel!
     
     var currentScene: QuizScene?
-//    var isStarted: Bool = false
+    var player: AVAudioPlayer?
+    var sound: Bool!
+    var isStarted: Bool = false
     var showMass: Bool = false
     var showRule: Bool = false
     
@@ -40,6 +43,8 @@ class ViewControllerQuiz: UIViewController {
                 LoadQuiz()
             }
         }
+        
+        currentScene?.del = self
         
         //view.addBackground(imageName: "temp-menu-simulator")
 
@@ -166,11 +171,16 @@ class ViewControllerQuiz: UIViewController {
     @IBAction func CheckAnswer(_ sender: UIButton) {
         let result = currentScene!.checkQuiz()
         
+        playSound(sound: "button")
+        
         lbResult.isHidden = false
         
         lbResult.layer.cornerRadius = 9
         lbResult.layer.borderWidth = 3
         lbResult.layer.borderColor = UIColor.black.cgColor
+        
+        //begin simulation
+        turnSimulation()
         
         if result {
             lbResult.text = "Correcto ✅"
@@ -180,14 +190,29 @@ class ViewControllerQuiz: UIViewController {
             perform(#selector(hideAnswer), with: nil, afterDelay: 3)
         }
         
+        //finish simulation
+        perform(#selector(turnSimulation), with: nil, afterDelay: 3)
+        
     }
     
     @objc func hideAnswer(){
         lbResult.isHidden = true
     }
     
+    @objc func turnSimulation(){
+        if isStarted {
+            isStarted = false
+        }
+        else {
+            isStarted = true
+        }
+        currentScene!.isSimulationPlaying = isStarted
+        currentScene!.playSimulation()
+    }
+    
     @IBAction func getHint(_ sender: UIButton) {
-        
+        playSound(sound: "button")
+        currentScene!.getHint()
     }
     
     @IBAction func CheckboxMass(_ sender: Any) {
@@ -195,15 +220,14 @@ class ViewControllerQuiz: UIViewController {
         if showMass {
             btnMass.setImage(UIImage(named: "unchecked"), for: .normal)
             showMass = false
-            
-            currentScene!.showMass(show: showMass)
         }
         else {
             btnMass.setImage(UIImage(named: "checked"), for: .normal)
             showMass = true
-            
-            currentScene!.showMass(show: showMass)
         }
+        
+        playSound(sound: "checkbox")
+        currentScene!.showMass(show: showMass)
     }
     
     @IBAction func CheckboxRule(_ sender: Any) {
@@ -215,14 +239,21 @@ class ViewControllerQuiz: UIViewController {
             btnRule.setImage(UIImage(named: "checked"), for: .normal)
             showRule = true
         }
+        playSound(sound: "checkbox")
+        currentScene!.showRuler(show: showRule)
     }
     
     @IBAction func exit(_ sender: UIButton) {
+        playSound(sound: "button")
         dismiss(animated: true, completion: nil)
     }
     
     func addBrick(brickWeight: Int, posX: Int) {
-        currentScene!.addBrick(brickWeight: brickWeight, posX: posX, swMass: showMass)
+        currentScene!.addBrick(brickWeight: brickWeight, posX: posX, swMass: showMass, swForce: false)
+    }
+    
+    func updateTorque(torques: [Double]) {
+        playSound(sound: "place")
     }
     
     // MARK: - Navigation
@@ -231,5 +262,17 @@ class ViewControllerQuiz: UIViewController {
         //let itemsView = segue.destination as? ViewControllerItems
         //itemsView?.delegate = self
     }
-
+    
+    func playSound(sound: String) {
+        let pathToSound = Bundle.main.path(forResource: sound, ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            if self.sound {
+                player?.play()
+            }
+        } catch {
+            print("hubo un error con el sonido: " + sound)
+        }
+    }
 }

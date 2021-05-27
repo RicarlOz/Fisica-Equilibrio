@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol AddBrickProtocol {
     func addBrick(brickWeight: Int)
@@ -17,6 +18,8 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var pcIndex: UIPageControl!
     @IBOutlet weak var cvBlocks: UICollectionView!
     var delegate : AddBrickProtocol!
+    var player: AVAudioPlayer?
+    var sound: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +75,7 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        playSound(sound: "button")
         delegate.addBrick(brickWeight: (indexPath.row + 1) * 5)
         dismiss(animated: true, completion: nil)
     }
@@ -85,5 +89,19 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //funcion para reproducir sonido
+    func playSound(sound: String) {
+        let pathToSound = Bundle.main.path(forResource: sound, ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            if self.sound {
+                player?.play()
+            }
+        } catch {
+            print("hubo un error con el sonido: " + sound)
+        }
+    }
 
 }

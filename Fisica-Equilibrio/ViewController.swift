@@ -32,7 +32,9 @@ extension UIView {
 class ViewController: UIViewController {
     
     @IBOutlet weak var imgBackground: UIImageView!
+    @IBOutlet weak var btSound: UIButton!
     
+    var sound: Bool = true
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
@@ -49,26 +51,40 @@ class ViewController: UIViewController {
         playSound(sound: "button")
     }
     
+    @IBAction func mute(_ sender: Any) {
+        sound = !sound
+        if sound {
+            btSound.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
+        }
+        else {
+            btSound.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+        }
+        btSound.tintColor = UIColor.black
+    }
     
     func playSound(sound: String) {
-        guard let url = Bundle.main.url(forResource: sound, withExtension: "mp3") else { return }
-
+        let pathToSound = Bundle.main.path(forResource: sound, ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-
-            /* iOS 10 and earlier require the following line:
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
-
-            guard let player = player else { return }
-
-            player.play()
-
-        } catch let error {
-            print(error.localizedDescription)
+            player = try AVAudioPlayer(contentsOf: url)
+            if self.sound {
+                player?.play()
+            }
+        } catch {
+            print("hubo un error con el sonido: " + sound)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "simulator" {
+            let simulatorView = segue.destination as! ViewControllerSimulator
+            
+            simulatorView.sound = sound
+        }
+        else {
+            let quizView = segue.destination as! QuizViewController
+            
+            quizView.sound = sound
         }
     }
 }

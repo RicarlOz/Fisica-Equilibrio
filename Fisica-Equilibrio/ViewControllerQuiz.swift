@@ -65,7 +65,7 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
         lbResult.layer.borderWidth = 3
         lbResult.layer.borderColor = UIColor.black.cgColor
     
-        lbResult.text = "Equilibra la balanza ⚖️"
+        lbResult.text = "  Equilibra la balanza ⚖️  "
         perform(#selector(hideAnswer), with: nil, afterDelay: 3)
     }
     

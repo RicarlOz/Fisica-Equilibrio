@@ -10,6 +10,7 @@ import SpriteKit
 protocol updateTorqueProtocol {
     func updateTorque(torques: [Double])
 }
+
 class SimulatorScene: SKScene {
 
     weak var viewController: ViewControllerSimulator?
@@ -32,7 +33,7 @@ class SimulatorScene: SKScene {
     var positionBrick : SKShapeNode?
     var xScalePositions = [CGFloat]()
     var xBrickPositions = [CGFloat]()
-    var brickPosition : Int = 0
+    var brickPosition : Int = -1
     var bricks : [BrickNode?] = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var occupiedPositions = [false, false, false, false, false, false, false, false]
@@ -165,10 +166,6 @@ class SimulatorScene: SKScene {
             }
             straightenScale()
         }
-        print("---")
-        for joint in joints {
-            print(joint?.bodyA)
-        }
     }
     
     func addBrick(brickWeight: Int, swMass: Bool, swForce: Bool) {
@@ -184,7 +181,7 @@ class SimulatorScene: SKScene {
         }
         
         let brick = BrickNode(imageNamed: String(brickWeight))
-        brick.position = scene!.convert(CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8), to: scale)
+        brick.position = scene!.convert(CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8 - brick.size.height / 2), to: scale)
         brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
         
@@ -239,6 +236,8 @@ class SimulatorScene: SKScene {
             return
         }
         
+        brickPosition = -1
+
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
@@ -326,7 +325,7 @@ class SimulatorScene: SKScene {
             selectedBrick.removeFromParent()
         }
         // Place brick on the bar if position is free
-        else if !occupiedPositions[brickPosition] {
+        else if brickPosition > -1 && !occupiedPositions[brickPosition] {
             if selectedBrick.brickPosition != -1 {
                 torques[selectedBrick.brickPosition] = 0
                 del.updateTorque(torques: torques)
@@ -361,7 +360,7 @@ class SimulatorScene: SKScene {
             }
         }
         // Return brick to its original position if position was occupied
-        else {
+        else if brickPosition > -1 {
             if selectedBrick.brickPosition == -1 {
                 selectedBrick.removeFromParent()
             }
@@ -391,22 +390,10 @@ class SimulatorScene: SKScene {
                 }
             }
         }
-        
-        print(scaleWeight)
-        /*print(occupiedPositions)
-        for brick in bricks {
-            print(brick)
-        }
-        print("---")
-        for joint in joints {
-            print(joint)
-        }*/
     }
     
     func showMass(show: Bool) {
-        //print("---")
         for brick in bricks {
-            //print(brick)
             brick?.childNode(withName: "lbWeight")?.isHidden = !show
         }
     }
@@ -416,9 +403,7 @@ class SimulatorScene: SKScene {
     }
     
     func showForce(show: Bool) {
-        //print("---")
         for brick in bricks {
-            //print(brick)
             brick?.childNode(withName: "force")?.isHidden = !show
         }
     }

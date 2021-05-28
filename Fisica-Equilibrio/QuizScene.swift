@@ -10,7 +10,7 @@ import SpriteKit
 class QuizScene: SKScene {
 
     weak var viewController: ViewControllerQuiz?
-    var background = SKSpriteNode(imageNamed: "temp-menu-simulator")
+    var background = SKSpriteNode(imageNamed: "temp-menu-quizzes")
     
     let scale = SKSpriteNode(imageNamed: "bar")
     let scaleBase = SKSpriteNode(imageNamed: "base")
@@ -22,7 +22,6 @@ class QuizScene: SKScene {
     var scaleWeight = 0
     let floor = SKSpriteNode()
     let forceLookAt = SKSpriteNode()
-    //var trash = SKShapeNode(circleOfRadius: 40)
     
     var selectedBrick = BrickNode()
     var brickIsSelected : Bool = false
@@ -34,6 +33,7 @@ class QuizScene: SKScene {
     var joints : [SKPhysicsJointFixed?] = [nil, nil, nil, nil, nil, nil, nil, nil]
     var occupiedPositions = [false, false, false, false, false, false, false, false]
     var torques: [Double] = [0, 0, 0, 0, 0, 0, 0, 0]
+    var resultHints = [SKSpriteNode]()
     
     var del: updateTorqueProtocol!
     
@@ -82,12 +82,6 @@ class QuizScene: SKScene {
         
         forceLookAt.position = CGPoint(x: size.width / 2, y: -10000)
         addChild(forceLookAt)
-        
-//        trash.position = CGPoint(x: size.width / 2, y: scale.position.y - scale.size.height * 2)
-//        trash.fillColor = .white
-//        trash.fillTexture = SKTexture(imageNamed: "trashClosed")
-//        trash.isHidden = true
-//        addChild(trash)
         
         positionBrick = SKShapeNode(rectOf: CGSize(width: scale.size.width / 10 , height: 50))
         positionBrick!.name = "positionBrick"
@@ -162,10 +156,6 @@ class QuizScene: SKScene {
             }
             straightenScale()
         }
-//        print("---")
-//        for joint in joints {
-//            print(joint?.bodyA)
-//        }
     }
     
     func addBrick(brickWeight: Int, posX: Int, swMass: Bool, swForce: Bool) {
@@ -181,7 +171,6 @@ class QuizScene: SKScene {
         }
         
         let brick = BrickNode(imageNamed: String(brickWeight))
-        //CGPoint(x: size.width / 2, y: scale.position.y + scale.size.height * 8)
         brick.position = scene!.convert(CGPoint(x: (size.width / 2) + (brick.size.width * CGFloat(posX)), y: scale.position.y + scale.size.height * 8), to: scale)
         brick.size.width = scale.size.width / 10
         brick.setup(brickWeight: brickWeight)
@@ -247,7 +236,6 @@ class QuizScene: SKScene {
             
             selectedBrick.removePhysicsBody()
             brickIsSelected = true
-//            trash.isHidden = false
         }
     }
     
@@ -265,11 +253,6 @@ class QuizScene: SKScene {
                 occupiedPositions[selectedBrick.brickPosition] = false
                 bricks[selectedBrick.brickPosition] = nil
                 joints[selectedBrick.brickPosition] = nil
-                
-//                if let foundBrick = bricks[8] {
-//                    foundBrick.removeFromParent()                 ATENCIOOOOOOON
-//                    bricks[8] = nil
-//                }
             }
             else {
                 for i in 8..<12 {
@@ -316,15 +299,6 @@ class QuizScene: SKScene {
                 brickPosition = 7
             }
             
-//            if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
-//                trash.fillTexture = SKTexture(imageNamed: "trashOpen")
-//                positionBrick!.isHidden = true
-//            }
-//            else {
-//                trash.fillTexture = SKTexture(imageNamed: "trashClosed")
-//                positionBrick!.isHidden = false
-//            }
-            
             positionBrick!.position.x = scale.size.width * xBrickPositions[brickPosition]
         }
     }
@@ -334,20 +308,9 @@ class QuizScene: SKScene {
             return
         }
         
-//        guard let touch = touches.first else { return }
-//        let location = touch.location(in: self)
-        
         positionBrick!.removeFromParent()
             
-//        if location.x > trash.position.x - 40 && location.x < trash.position.x + 40 && location.y > trash.position.y - 40 && location.y < trash.position.y + 40 {
-//            if selectedBrick.brickPosition != -1 {
-//                torques[selectedBrick.brickPosition] = 0
-//                del.updateTorque(torques: torques)
-//            }
-//            selectedBrick.removeFromParent()
-//        }
-        // Place brick on the bar if position is free
-        /*else*/ if !occupiedPositions[brickPosition] {
+        if !occupiedPositions[brickPosition] {
             if selectedBrick.brickPosition != -1 {
                 torques[selectedBrick.brickPosition] = 0
                 del.updateTorque(torques: torques)
@@ -399,7 +362,6 @@ class QuizScene: SKScene {
         }
         
         brickIsSelected = false
-//        trash.isHidden = true
         
         scaleWeight = 0
         for number in 0...7 {
@@ -412,16 +374,6 @@ class QuizScene: SKScene {
                 }
             }
         }
-
-//        print(scaleWeight)
-        /*print(occupiedPositions)
-        for brick in bricks {
-            print(brick)
-        }
-        print("---")
-        for joint in joints {
-            print(joint)
-        }*/
     }
     
     func showMass(show: Bool) {
@@ -436,37 +388,88 @@ class QuizScene: SKScene {
         ruler.isHidden = !show
     }
     
-//    func showForce(show: Bool) {
-//        //print("---")
-//        for brick in bricks {
-//            //print(brick)
-//            brick?.childNode(withName: "force")?.isHidden = !show
-//        }
-//    }
-//
-//    func showLevel(show: Bool) {
-//        levelRight.isHidden = !show
-//        levelLeft.isHidden = !show
-//    }
-    
     func straightenScale() {
         let rotation = SKAction.rotate(toAngle: 0, duration: 2)
         scale.run(rotation)
     }
     
     func checkQuiz() -> Bool {
-        var totalTorque = 0.0
-        for num in 0..<8 {
-            totalTorque += (num > 3 ? torques[num] : -torques[num])
+        if bricks[8] == nil && bricks[9] == nil  && bricks[10] == nil  && bricks[11] == nil {
+            var totalTorque = 0.0
+            for num in 0..<8 {
+                totalTorque += (num > 3 ? torques[num] : -torques[num])
+            }
+                
+//            print("total = \(totalTorque)")
+//            print("return = \(totalTorque == 0)")
+                
+            return totalTorque == 0
         }
-            
-        print("total = \(totalTorque)")
-        print("return = \(totalTorque == 0)")
-            
-        return totalTorque == 0
+        else {
+            return false
+        }
     }
     
-    func getHint() {
-        print(bricks)
+    func getHint(weights: [Int], index: [Int]) {
+        var phi: SKSpriteNode
+        
+        for i in 0..<weights.count {
+            var height = 50
+            if weights[i] >= 65 {
+                height *= 3
+            }
+            else if weights[i] >= 35 && weights[i] <= 60 {
+                height *= 2
+            }
+            
+            phi = SKSpriteNode(imageNamed: String(weights[i]))//(rectOf: CGSize(width: Int(scale.size.width) / 10 , height: height))
+            phi.name = "HintPlaceholder"
+            phi.alpha = 0.5
+            if weights[i] >= 95 {
+                phi.position = CGPoint(x: scale.size.width, y: scale.size.height+75)
+            }
+            else if weights[i] >= 65 && weights[i] <= 90 {
+                phi.position = CGPoint(x: scale.size.width, y: scale.size.height+55)
+            }
+            else if weights[i] >= 35 && weights[i] <= 60 {
+                phi.position = CGPoint(x: scale.size.width, y: scale.size.height+30)
+            }
+            else {
+                phi.position = CGPoint(x: scale.size.width, y: scale.size.height+5)
+            }
+            
+            scale.addChild(phi)
+            phi.size.width = scale.size.width / 10
+            phi.position.x = scale.size.width * xBrickPositions[index[i]]
+            
+            resultHints.append(phi)
+            
+//            pausa intermitente
+            blinkHints()
+            perform(#selector(removeHints), with: nil, afterDelay: 3)
+        }
+    }
+    
+    func blinkHints(){
+        let hide = SKAction.fadeAlpha(to: 0, duration: 1)
+        let unhide = SKAction.fadeAlpha(to: 0.5, duration: 1)
+
+        // Wait for 2 seconds before repeating the action
+        let wait = SKAction.wait(forDuration: 0.5)
+
+        // Form a sequence with the scale actions, as well as the wait action
+        let hideActionSequence = SKAction.sequence([unhide, wait, hide])
+
+        // Run the action
+        for i in resultHints {
+            i.run(hideActionSequence)
+        }
+    }
+    
+    @objc func removeHints(){
+        for i in resultHints {
+            i.removeFromParent()
+        }
+        resultHints.removeAll()
     }
 }

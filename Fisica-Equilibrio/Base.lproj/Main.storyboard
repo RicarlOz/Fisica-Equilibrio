@@ -652,17 +652,6 @@
                                     <action selector="getHint:" destination="I7L-Ni-Ob5" eventType="touchUpInside" id="DrB-EI-1lH"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iet-BN-VtC">
-                                <rect key="frame" x="187.5" y="142" width="292" height="91"/>
-                                <color key="backgroundColor" red="0.99759680029999998" green="0.68629229069999997" blue="0.30184820289999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="292" id="eID-kj-Jja"/>
-                                    <constraint firstAttribute="height" constant="91" id="f4C-Ck-DYV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGi-7V-aap">
                                 <rect key="frame" x="489" y="20" width="158" height="78"/>
                                 <subviews>
@@ -705,6 +694,17 @@
                                     <constraint firstAttribute="width" constant="158" id="Oud-fS-50C"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Placeholder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iet-BN-VtC">
+                                <rect key="frame" x="119" y="142" width="428" height="91"/>
+                                <color key="backgroundColor" red="0.99759680029999998" green="0.68629229069999997" blue="0.30184820289999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="292" id="eID-kj-Jja"/>
+                                    <constraint firstAttribute="height" constant="91" id="f4C-Ck-DYV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kCm-sU-y4h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

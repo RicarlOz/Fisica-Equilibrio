@@ -31,8 +31,9 @@ extension UIView {
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var imgBackground: UIImageView!
     @IBOutlet weak var btSound: UIButton!
+    @IBOutlet weak var btnSimulator: UIButton!
+    @IBOutlet weak var btnQuiz: UIButton!
     
     var sound: Bool = true
     var player: AVAudioPlayer?
@@ -40,11 +41,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        btnQuiz.imageView?.layer.cornerRadius = 9
+        btnSimulator.imageView?.layer.cornerRadius = 9
+        
         view.addBackground()
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     @IBAction func seleccion(_ sender: Any) {
@@ -81,7 +89,7 @@ class ViewController: UIViewController {
             
             simulatorView.sound = sound
         }
-        else {
+        else if segue.identifier == "quiz" {
             let quizView = segue.destination as! QuizViewController
             
             quizView.sound = sound

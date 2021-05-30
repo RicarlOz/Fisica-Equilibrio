@@ -19,6 +19,8 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
     @IBOutlet weak var btnMass: UIButton!
     @IBOutlet weak var btnRule: UIButton!
     @IBOutlet weak var lbResult: UILabel!
+    @IBOutlet weak var vTools: UIView!
+    @IBOutlet weak var btnSH: UIButton!
     
     var currentScene: QuizScene?
     var player: AVAudioPlayer?
@@ -26,6 +28,7 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
     var isStarted: Bool = false
     var showMass: Bool = false
     var showRule: Bool = false
+    var showTools: Bool = true
     
     
     var result = Array<Int>()
@@ -35,6 +38,9 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        vTools.layer.cornerRadius = 9
+        btnSH.layer.cornerRadius = 9
         
         if let view = self.view as! SKView? {
             if let scene = SKScene(fileNamed: "QuizScene") {
@@ -71,6 +77,10 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     func LoadQuiz() {
@@ -225,6 +235,20 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
         }
         playSound(sound: "checkbox")
         currentScene!.showRuler(show: showRule)
+    }
+    
+    @IBAction func showHideTools(_ sender: UIButton) {
+        if showTools {
+            showTools = false
+            btnSH.setTitle("⟨", for: .normal)
+            UIView.animate(withDuration: 0.8, animations: {self.vTools.transform = CGAffineTransform(translationX: self.vTools.frame.width + 20, y: 0)})
+            UIView.animate(withDuration: 0.8, animations: {self.btnSH.transform = CGAffineTransform(translationX: self.vTools.frame.width + 20, y: 0)})
+        } else {
+            showTools = true
+            btnSH.setTitle("⟩", for: .normal)
+            UIView.animate(withDuration: 0.8, animations: {self.vTools.transform = CGAffineTransform(translationX: 0, y: 0)})
+            UIView.animate(withDuration: 0.8, animations: {self.btnSH.transform = CGAffineTransform(translationX: 0, y: 0)})
+        }
     }
     
     @IBAction func exit(_ sender: UIButton) {

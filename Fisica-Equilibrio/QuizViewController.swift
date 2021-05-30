@@ -25,6 +25,10 @@ class QuizViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     @IBAction func goBack(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

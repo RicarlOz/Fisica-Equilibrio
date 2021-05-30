@@ -24,6 +24,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     @IBOutlet weak var btnLevel: UIButton!
     @IBOutlet weak var tvLeft: UITableView!
     @IBOutlet weak var tvRight: UITableView!
+    @IBOutlet weak var btnSH: UIButton!
     
     var currentScene: SimulatorScene?
     var player: AVAudioPlayer?
@@ -34,6 +35,9 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     var showRule: Bool = false
     var showLevel: Bool = false
     var torques: [Double] = [0, 0, 0, 0, 0, 0, 0, 0]
+    
+    var btnSHPos = CGPoint()
+    var showTools: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +62,7 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
         btnItems.layer.cornerRadius = 9
         btnItems.layer.borderWidth = 3
         btnItems.layer.borderColor = UIColor.black.cgColor
+        btnSH.layer.cornerRadius = 9
         btnExit.layer.cornerRadius = 9
         btnExit.layer.borderWidth = 3
         btnExit.layer.borderColor = UIColor.black.cgColor
@@ -69,11 +74,16 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
         tvLeft.separatorInset = UIEdgeInsets.zero
         tvRight.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         tvRight.separatorInset = UIEdgeInsets.zero
-    
+        
+        btnSHPos = btnSH.layer.position
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     @IBAction func closeItems(segue: UIStoryboardSegue) {
@@ -155,6 +165,20 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
     @IBAction func exit(_ sender: UIButton) {
         playSound(sound: "button")
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func showHideTools(_ sender: UIButton) {
+        if showTools {
+            showTools = false
+            btnSH.setTitle("⟨", for: .normal)
+            UIView.animate(withDuration: 0.8, animations: {self.vTools.transform = CGAffineTransform(translationX: self.vTools.frame.width + 20, y: 0)})
+            UIView.animate(withDuration: 0.8, animations: {self.btnSH.transform = CGAffineTransform(translationX: self.vTools.frame.width + 20, y: 0)})
+        } else {
+            showTools = true
+            btnSH.setTitle("⟩", for: .normal)
+            UIView.animate(withDuration: 0.8, animations: {self.vTools.transform = CGAffineTransform(translationX: 0, y: 0)})
+            UIView.animate(withDuration: 0.8, animations: {self.btnSH.transform = CGAffineTransform(translationX: 0, y: 0)})
+        }
     }
     
     func addBrick(brickWeight: Int) {

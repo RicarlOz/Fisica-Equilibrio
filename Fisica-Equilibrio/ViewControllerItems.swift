@@ -40,6 +40,10 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
         return .landscape
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     @IBAction func changePage(_ sender: Any) {
         switch pcIndex.currentPage {
         case 0:

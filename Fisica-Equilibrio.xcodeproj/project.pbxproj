@@ -156,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					534D00E3262892B700AAB40A = {
 						CreatedOnToolsVersion = 12.4;
@@ -220,7 +220,6 @@
 				6FBBC4B7264DCCEB0089E0D6 /* BrickNode.swift in Sources */,
 				6FE2A546262FD325007525E5 /* QuizViewController.swift in Sources */,
 				53609814266418050031A7A3 /* ViewControllerCredits.swift in Sources */,
-				5304F855262F475800690EB4 /* ViewControllerSimulator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 263P7U2UTC;
 				INFOPLIST_FILE = "Fisica-Equilibrio/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -388,6 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 263P7U2UTC;
 				INFOPLIST_FILE = "Fisica-Equilibrio/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

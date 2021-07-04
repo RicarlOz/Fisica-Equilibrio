@@ -19,13 +19,13 @@ class ViewControllerCredits: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .landscape
+//    }
+//    
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
     
     /*
     // MARK: - Navigation

@@ -47,13 +47,13 @@ class ViewController: UIViewController {
         view.addBackground()
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .landscape
+//    }
+//
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
     
     @IBAction func seleccion(_ sender: Any) {
         playSound(sound: "button")

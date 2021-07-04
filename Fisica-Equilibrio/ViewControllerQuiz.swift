@@ -75,13 +75,13 @@ class ViewControllerQuiz: UIViewController, updateTorqueProtocol {
         perform(#selector(hideAnswer), with: nil, afterDelay: 3)
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .landscape
+//    }
+//    
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
     
     func LoadQuiz() {
         // 0 es el centro de posicion

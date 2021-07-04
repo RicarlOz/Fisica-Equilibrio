@@ -78,13 +78,13 @@ class ViewControllerSimulator: UIViewController, AddBrickProtocol, updateTorqueP
         btnSHPos = btnSH.layer.position
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .landscape
+//    }
+//    
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
     
     @IBAction func closeItems(segue: UIStoryboardSegue) {
         playSound(sound: "button")

@@ -36,13 +36,13 @@ class ViewControllerItems: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return .landscape
-//    }
-//
-//    override var shouldAutorotate: Bool {
-//        return false
-//    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBAction func changePage(_ sender: Any) {
         switch pcIndex.currentPage {
